@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hamsters version="4">
+    <colors applicationcolor="-11141309" declarativecolor="-1854465" devicecolor="-8879105" inputdevicecolor="-8879105" objectcolor="-14336" outputdevicecolor="-8879105" physicalobjectcolor="-14336" situationalcolor="-3290107" strategiccolor="-4136705" timeccolor="-105247"/>
+    <nodes>
+        <task copy="false" critical="0" folded="false" help="" id="1" iterative="false" maxexectime="0" minexectime="0" name="Recherche" nb_iteration="0" optional="false" type="abstract" x="322" y="28">
+            <operator id="3" knowledgeproceduraltype="" type="enable" x="347" y="143">
+                <task copy="false" critical="0" folded="false" help="" id="2" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Pense à un oiseau" nb_iteration="0" optional="false" type="cognitive" x="131" y="250"/>
+                <task copy="false" critical="0" folded="false" help="" id="4" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Ouvre l'application" nb_iteration="0" optional="false" type="motor" x="303" y="250"/>
+                <task copy="false" critical="0" folded="false" help="" id="5" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Commence la recherche" nb_iteration="0" optional="false" type="user" x="470" y="250">
+                    <operator id="7" knowledgeproceduraltype="" type="enable" x="550" y="352">
+                        <task copy="false" critical="0" folded="false" help="" id="8" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Appuie sur &quot;Recherche&quot;" nb_iteration="0" optional="false" type="motor" x="394" y="482"/>
+                        <task copy="false" critical="0" folded="false" help="" id="9" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Envoie du formulaire" nb_iteration="0" optional="false" type="input" x="578" y="482">
+                            <operator id="11" knowledgeproceduraltype="" type="enable" x="632" y="589">
+                                <task copy="false" critical="0" folded="false" help="" id="10" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Affichage des résulats" nb_iteration="0" optional="false" type="output" x="322" y="668">
+                                    <operator id="17" knowledgeproceduraltype="" type="choice" x="247" y="753">
+                                        <task copy="false" critical="0" folded="false" help="" id="18" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Filtres de recherche" nb_iteration="0" optional="false" type="input" x="68" y="795"/>
+                                        <task copy="false" critical="0" folded="false" help="" id="19" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Retour" nb_iteration="0" optional="false" type="motor" x="284" y="794"/>
+                                    </operator>
+                                </task>
+                                <task copy="false" critical="0" folded="false" help="" id="16" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Trouver l'oiseau" nb_iteration="0" optional="false" type="cognitive" x="590" y="667"/>
+                                <task copy="false" critical="0" folded="false" help="" id="20" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Choisir l'oiseau" nb_iteration="0" optional="false" type="motor" x="717" y="666"/>
+                                <task copy="false" critical="0" folded="false" help="" id="21" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Fiche info oiseau" nb_iteration="0" optional="false" type="output" x="869" y="666">
+                                    <operator id="24" knowledgeproceduraltype="" type="choice" x="829" y="773">
+                                        <task copy="false" critical="0" folded="false" help="" id="23" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Affichage Carte" nb_iteration="0" optional="false" type="output" x="703" y="833"/>
+                                        <task copy="false" critical="0" folded="false" help="" id="25" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Retour" nb_iteration="0" optional="false" type="motor" x="869" y="832"/>
+                                    </operator>
+                                </task>
+                            </operator>
+                        </task>
+                    </operator>
+                    <operator id="12" knowledgeproceduraltype="" type="choice" x="261" y="406">
+                        <task copy="false" critical="0" folded="false" help="" id="13" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer taille" nb_iteration="0" optional="false" type="input" x="43" y="485"/>
+                        <task copy="false" critical="0" folded="false" help="" id="14" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer couleur" nb_iteration="0" optional="false" type="input" x="158" y="485"/>
+                        <task copy="false" critical="0" folded="false" help="" id="15" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer nom" nb_iteration="0" optional="false" type="input" x="277" y="485"/>
+                    </operator>
+                </task>
+            </operator>
+        </task>
+    </nodes>
+    <datas/>
+    <errors/>
+    <parameters/>
+</hamsters>
