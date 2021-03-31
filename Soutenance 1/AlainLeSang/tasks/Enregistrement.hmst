@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hamsters version="4">
+    <colors applicationcolor="-11141309" declarativecolor="-1854465" devicecolor="-8879105" inputdevicecolor="-8879105" objectcolor="-14336" outputdevicecolor="-8879105" physicalobjectcolor="-14336" situationalcolor="-3290107" strategiccolor="-4136705" timeccolor="-105247"/>
+    <nodes>
+        <task copy="false" critical="0" folded="false" help="" id="1" iterative="false" maxexectime="0" minexectime="0" name="Enregistrement" nb_iteration="0" optional="false" type="abstract" x="317" y="26">
+            <operator id="3" knowledgeproceduraltype="" type="enable" x="282" y="132">
+                <task copy="false" critical="0" folded="false" help="" id="4" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Voit un oiseau" nb_iteration="0" optional="false" type="cognitive" x="130" y="244"/>
+                <task copy="false" critical="0" folded="false" help="" id="5" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Appuyer sur &quot;Share&quot;" nb_iteration="0" optional="false" type="motor" x="293" y="244">
+                    <operator id="7" knowledgeproceduraltype="" type="enable" x="277" y="325">
+                        <task copy="false" critical="0" folded="false" help="" id="9" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer description" nb_iteration="0" optional="false" type="input" x="7" y="473"/>
+                        <task copy="false" critical="0" folded="false" help="" id="10" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer localisation" nb_iteration="0" optional="false" type="input" x="130" y="473"/>
+                        <task copy="false" critical="0" folded="false" help="" id="11" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer image" nb_iteration="0" optional="false" type="input" x="255" y="473"/>
+                        <task copy="false" critical="0" folded="false" help="" id="12" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer date" nb_iteration="0" optional="false" type="input" x="364" y="473"/>
+                        <operator id="6" knowledgeproceduraltype="" type="choice" x="450" y="393">
+                            <task copy="false" critical="0" folded="false" help="" id="8" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Entrer nom" nb_iteration="0" optional="false" type="input" x="450" y="448"/>
+                            <task copy="false" critical="0" folded="false" help="" id="13" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Recherche oiseau" nb_iteration="0" optional="false" type="user" x="561" y="447"/>
+                        </operator>
+                        <task copy="false" critical="0" folded="false" help="" id="14" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Envoie de formiulaire" nb_iteration="0" optional="false" type="output" x="734" y="391">
+                            <operator id="15" knowledgeproceduraltype="" type="choice" x="694" y="509">
+                                <task copy="false" critical="0" folded="false" help="" id="16" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Partager réseaux sociaux" nb_iteration="0" optional="false" type="motor" x="523" y="600"/>
+                                <task copy="false" critical="0" folded="false" help="" id="17" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Favoris" nb_iteration="0" optional="false" type="motor" x="705" y="600"/>
+                            </operator>
+                            <operator id="18" knowledgeproceduraltype="" type="enable" x="836" y="509">
+                                <task copy="false" critical="0" folded="false" help="" id="19" iterative="false" knowledgeproceduraltype="" maxexectime="0" minexectime="0" name="Ajout à la carte" nb_iteration="0" optional="false" type="input" x="801" y="600"/>
+                            </operator>
+                        </task>
+                    </operator>
+                </task>
+            </operator>
+        </task>
+    </nodes>
+    <datas/>
+    <errors/>
+    <parameters/>
+</hamsters>
