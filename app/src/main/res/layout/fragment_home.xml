@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+    <EditText
+        android:id="@+id/search_editor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Please Enter The Birds Name"
+        android:inputType="text"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        />
+
+
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"
