@@ -39,9 +39,8 @@ public class HomeFragment extends Fragment implements IBridInfo{
             }
         });
 
-        Log.d("EditText", "111");
-        initView((EditText)root.findViewById(R.id.search_editor)); // Create a search button in the virtuel KeyBoard
-        Log.d("EditText", "222");
+        // Make a search button in the Virtual KeyBoard
+        initView((EditText)root.findViewById(R.id.search_editor));
 
         return root;
     }
@@ -51,7 +50,6 @@ public class HomeFragment extends Fragment implements IBridInfo{
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                    // 先隐藏键盘
                     ((InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
                             .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
@@ -60,7 +58,7 @@ public class HomeFragment extends Fragment implements IBridInfo{
                     intent.putExtra(BRID_INFO, editText.getText().toString());
                     startActivity(intent);
 
-                    Log.d("EditText", "is ok ?");
+                    Log.d("mylog", "is ok ?");
                     return true;
                 }
                 return false;
