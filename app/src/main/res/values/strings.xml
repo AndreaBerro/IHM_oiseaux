@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Projet Oiseaux</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_map">Map</string>
+    <string name="title_Me">Me</string>
+    <string name="title_Share">Share</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
