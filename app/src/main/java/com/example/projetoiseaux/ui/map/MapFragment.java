@@ -1,5 +1,6 @@
 package com.example.projetoiseaux.ui.map;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.projetoiseaux.Map;
 import com.example.projetoiseaux.R;
 
 public class MapFragment extends Fragment {
@@ -30,6 +32,11 @@ public class MapFragment extends Fragment {
                 textView.setText(s);
             }
         });
+        (root.findViewById(R.id.button)).setOnClickListener(click -> {
+            Intent intentSend = new Intent(root.getContext(), Map.class);
+            startActivity(intentSend);
+        });
         return root;
     }
+
 }
