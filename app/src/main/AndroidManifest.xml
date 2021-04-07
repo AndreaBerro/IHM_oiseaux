@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetOiseaux">
-        <activity android:name=".Map"></activity>
         <activity android:name=".ui.SearchResult.SearchResult" />
         <activity
             android:name=".MainActivity"
