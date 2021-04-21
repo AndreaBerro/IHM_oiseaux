@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.projetoiseaux">
-
-    <!--    Map Permission-->
+    <!-- Map Permission -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- storage permission -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <!-- camera permission -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- storage permission -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- camera permission -->
     <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.CAMERA"/>
 
-
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -24,7 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetOiseaux">
-        <activity android:name=".ui.share.Camera"></activity>
+        <activity android:name=".ui.share.Camera" />
         <activity android:name=".ui.SearchResult.SearchResult" />
         <activity
             android:name=".MainActivity"
@@ -43,10 +37,8 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
-
-
     </application>
 
 </manifest>

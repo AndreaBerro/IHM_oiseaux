@@ -29,9 +29,7 @@ public class ShareFragment extends Fragment {
     ImageView imageView;
     private IPictureActivity pictureActivity;
 
-    public ShareFragment(){
-        Log.d("ihmdemo_ShareFragment","ShareFragment()");
-}
+    public ShareFragment(){}
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -67,12 +65,9 @@ public class ShareFragment extends Fragment {
     }
 
     public void setImage(Bitmap bitMap, ImageView imageView) {
-
-        Log.d("ihmdemo_ShareFragment","setImage()-> imageView="+imageView);
         if (bitMap != null) {
-            Log.d("mylog", "success setImage()-> imageView="+imageView);
             imageView.setImageBitmap(bitMap);
-
+            Log.d("mylog", "success setImage()-> imageView="+imageView);
         } else {
             Log.d("mylog", "img null");
         }

@@ -10,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -24,7 +23,7 @@ import java.util.Locale;
 
 import static com.example.projetoiseaux.ui.map.IGPSActivity.REQUEST_PERMISSION_GPS;
 
-public class GPS {
+public class GPSUtils {
     private MapFragment mapFragment;
     private FragmentActivity fragmentActivity;
     private Location currentLocation;
@@ -32,11 +31,20 @@ public class GPS {
     private Context context;
 
 
-    public GPS(Context context, FragmentActivity fragmentActivity, MapFragment mapFragment) {
+    public GPSUtils(Context context, FragmentActivity fragmentActivity, MapFragment mapFragment) {
         this.mapFragment = mapFragment;
         this.fragmentActivity = fragmentActivity;
         this.context = context;
         setListener();
+
+        Address a = getCityLocation("Xi'An");
+        if(a != null){
+            Log.d("gps", "Exemple------->" +
+                    "Address " + a.getLocality() +
+                    " Location " + a.getLatitude() + " " +
+                    a.getLongitude());
+        }
+
     }
 
     private void setListener() {
@@ -88,6 +96,9 @@ public class GPS {
             Log.d("gps", "in GPSFragment --> " + fragmentActivity.getParent() +"\n Context->>>" + context);
             ActivityCompat.requestPermissions(fragmentActivity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_GPS);
         }
+
+
+
     }
 
     boolean havePermissionGPS() {
@@ -102,26 +113,12 @@ public class GPS {
         }
     }
 
-    Location getPosition() {
-        return currentLocation;
-    }
-
-    Location getName(String VillNom){
-        return null;
-    }
-
-
-
-    String getPlaceName() throws IOException {
-        //通过坐标返回一个地址Object（找到的其中一个/）， getString
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        //仅需要一个结果
-        List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
-        return addresses.get(0).getLocality();
-    }
-
     GeoPoint getCurrentPosition(){
         return new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+    }
+
+    Location getCurrentLocation() {
+        return currentLocation;
     }
 
     String getCurrentPlaceName() throws IOException {
@@ -131,7 +128,33 @@ public class GPS {
         List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
         return addresses.get(0).getLocality();
         /// TODO: 2021/4/21
+
+
     }
+
+    Address getCityLocation(String cityName){
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        List<Address> addressList = null;
+        try {
+            addressList = geocoder.getFromLocationName(cityName, 5);
+            Log.d("gps","\n----------------\nget " + cityName + " Location --->" + addressList.toString());
+        } catch (IOException e){
+            Log.e("gps", "get Location Failed");
+        }
+        return addressList.get(0);
+    }
+
+    String getPlaceName() throws IOException {
+        //通过坐标返回一个地址Object（找到的其中一个/）， getString
+        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        //仅需要一个结果
+        List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
+        return addresses.get(0).getLocality();
+
+
+    }
+
+
 
 //    void setPlaceName(String placeName){
 //        placeNameTextView.setText(placeName);

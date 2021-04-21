@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     >
 
-<!--    android:paddingTop="?attr/actionBarSize"-->
-<!--    <fragment-->
-<!--        android:id="@+id/testFragment"-->
-<!--        android:name="com.example.projetoiseaux.ui.share.ShareFragment"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        />-->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="0dp"

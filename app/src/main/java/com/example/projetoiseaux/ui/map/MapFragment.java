@@ -8,14 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.preference.PreferenceManager;
 
 import com.example.projetoiseaux.R;
@@ -36,7 +33,7 @@ import static com.example.projetoiseaux.ui.map.IGPSActivity.REQUEST_PERMISSION_G
 public class MapFragment extends Fragment {
     private IGPSActivity igpsActivity;
     private MapView map;
-    private GPS gps;
+    private GPSUtils gps;
 
 
     @Override
@@ -67,7 +64,7 @@ public class MapFragment extends Fragment {
         if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_GPS);
         } else if (this.gps == null){
-            this.gps = new GPS(getContext(), getActivity(), this);
+            this.gps = new GPSUtils(getContext(), getActivity(), this);
         }
 
         // this.gps = new GPS(root, getContext(), getActivity()); // not work if
@@ -125,7 +122,7 @@ public class MapFragment extends Fragment {
 
     public void refocus(){
         if(gps == null){
-            gps = new GPS(getContext(), getActivity(), this);
+            gps = new GPSUtils(getContext(), getActivity(), this);
         }
         map.getController().setCenter(gps.getCurrentPosition());
     }

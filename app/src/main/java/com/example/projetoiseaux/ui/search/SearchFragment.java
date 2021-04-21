@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.home;
+package com.example.projetoiseaux.ui.search;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,17 +22,17 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.SearchResult.SearchResult;
 
-public class HomeFragment extends Fragment implements IBridInfo{
+public class SearchFragment extends Fragment implements IBridInfo{
 
-    private HomeViewModel homeViewModel;
+    private SearchViewModel searchViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
+        searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_search, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
