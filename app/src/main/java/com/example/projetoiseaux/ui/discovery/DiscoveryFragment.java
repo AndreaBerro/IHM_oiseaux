@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.example.projetoiseaux.R;
 
@@ -60,7 +62,14 @@ public class DiscoveryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_discovery, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_discovery,container,false);
+
+        String url = "https://twitter.com/OiseauxTd2";
+        WebView view = (WebView) rootView.findViewById(R.id.webView);
+        view.getSettings().setJavaScriptEnabled(true);
+        view.setWebViewClient(new WebViewClient());
+        view.loadUrl(url);
+
+        return rootView ;
     }
 }
