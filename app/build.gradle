@@ -27,6 +27,11 @@ android {
     }
 }
 
+// Multi Image Selector
+repositories {
+    maven { url "https://jitpack.io" }
+}
+
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -37,10 +42,21 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
 
+    // Multi Image Selector
+    implementation 'com.github.lovetuzitong:MultiImageSelector:1.2'
+
+
 //    Api-Open-Street-Map
     implementation 'androidx.preference:preference:1.1.0'
     implementation 'org.osmdroid:osmdroid-android:6.0.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    // Reflesh with swipereFresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

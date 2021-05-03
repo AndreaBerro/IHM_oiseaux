@@ -36,15 +36,6 @@ public class GPSUtils {
         this.fragmentActivity = fragmentActivity;
         this.context = context;
         setListener();
-
-        Address a = getCityLocation("Xi'An");
-        if(a != null){
-            Log.d("gps", "Exemple------->" +
-                    "Address " + a.getLocality() +
-                    " Location " + a.getLatitude() + " " +
-                    a.getLongitude());
-        }
-
     }
 
     private void setListener() {
@@ -144,14 +135,14 @@ public class GPSUtils {
         return addressList.get(0);
     }
 
-    String getPlaceName() throws IOException {
-        //通过坐标返回一个地址Object（找到的其中一个/）， getString
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-        //仅需要一个结果
-        List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
-        return addresses.get(0).getLocality();
-
-
+    String getPlaceName(int latitude, int longitude){
+        try {
+            Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+            List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1); // max result == 1 //仅需要一个结果
+            return addresses.get(0).getLocality();
+        } catch (IOException e){
+            return null;
+        }
     }
 
 

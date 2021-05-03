@@ -5,44 +5,148 @@
     android:layout_height="match_parent"
     tools:context=".ui.share.ShareFragment"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="#FFF2E2"
-    android:paddingBottom="?attr/actionBarSize">
-    <!--    android:background="#FFF2E2"-->
-    <TextView
-        android:id="@+id/text_share"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:textColor="#2196F3"
-        android:layout_weight="1"/>
+    android:gravity="start"
+    android:background="#FFFFFF"
+    android:paddingBottom="?attr/actionBarSize"
+    android:showDividers = "middle"
+    android:divider="@drawable/divider_line"
+    android:dividerPadding="15dp"
+    >
 
-    <ImageView
-        android:id="@+id/birdPicture"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="50"
-        android:src="@drawable/bird2"
-        />
+        android:layout_height="17dp"
+        android:layout_gravity="top"
+        android:layout_weight="10">
+        <Button
+            android:id="@+id/share_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Back" />
+
+        <Button
+            android:id="@+id/public_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/publicButton" />
+    </RelativeLayout>
 
     <EditText
-        android:id="@+id/saySthText"
+        android:id="@+id/share_desc"
+        android:layout_weight="10"
+        android:gravity="start"
+        android:layout_margin="10dp"
+        android:hint="@string/say_some_thing"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:hint="Say something"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:lines="3"
         />
 
-    <Button
-        android:id="@+id/takePictureButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Take a Picture"
-        android:layout_weight="1"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_marginTop="30dp"
-        />
+    <com.example.projetoiseaux.ui.share.GridPictures.MyGridView
+        android:layout_weight="15"
+        android:layout_marginBottom="5dp"
+        android:id="@+id/gridView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:horizontalSpacing="5dp"
+        android:verticalSpacing="5dp"
+        android:numColumns="3"
+        android:layout_marginTop="5dp">
+        <!--numColumns  一行有几列
+            verticalSpacing上下网格间距
+            horizontalSpacing 水平间距
+        -->
+    </com.example.projetoiseaux.ui.share.GridPictures.MyGridView>
+
+    <RelativeLayout
+        android:layout_weight="10"
+        android:id="@+id/share_location"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:id="@+id/icon_locate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_geo_alt" />
+
+        <TextView
+            android:id="@+id/location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/icon_locate"
+            android:text="@string/location"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_chevron_right"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_weight="10"
+        android:id="@+id/share_time"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingHorizontal="10dp"
+        android:layout_marginTop="3dp">
+
+        <ImageView
+            android:id="@+id/icon_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_clock" />
+
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/icon_time"
+            android:layout_marginLeft="10dp"
+            android:text="@string/time"/>
+
+        <TextView
+            android:id="@+id/hour_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/time_text"
+            android:layout_marginLeft="10dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_chevron_right"
+            />
+    </RelativeLayout>
+
+
+    <!--    <ImageView-->
+<!--        android:id="@+id/birdPicture"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="50"-->
+<!--        android:src="@drawable/bird2"-->
+<!--        />-->
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/takePictureButton"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Take a Picture"-->
+<!--        android:layout_weight="1"-->
+<!--        style="?android:attr/buttonStyleSmall"-->
+<!--        android:layout_marginTop="30dp"-->
+<!--        />-->
 
 </LinearLayout>
