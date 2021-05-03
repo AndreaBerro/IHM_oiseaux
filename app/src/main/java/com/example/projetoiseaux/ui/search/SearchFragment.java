@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -21,6 +22,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.SearchResult.SearchResult;
+import com.example.projetoiseaux.ui.searchTool.AutoCompleteBirdAdapter;
+import com.example.projetoiseaux.ui.searchTool.SearchActivity;
+
+import static com.example.projetoiseaux.ui.Bird.FULL_LIST;
 
 public class SearchFragment extends Fragment implements IBridInfo{
 
@@ -31,6 +36,12 @@ public class SearchFragment extends Fragment implements IBridInfo{
 
         searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         View root = inflater.inflate(R.layout.fragment_search, container, false);
+
+        root.findViewById(R.id.filter).setOnClickListener(click -> {
+            Intent filter = new Intent(getContext(), SearchActivity.class);
+            startActivity(filter);
+        });
+
         final TextView textView = root.findViewById(R.id.text_home);
         searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -39,30 +50,33 @@ public class SearchFragment extends Fragment implements IBridInfo{
             }
         });
 
+        AutoCompleteTextView editText = root.findViewById(R.id.search_editor);
+        AutoCompleteBirdAdapter textAdapter = new AutoCompleteBirdAdapter(requireContext(), FULL_LIST);
+        editText.setAdapter(textAdapter);
+
         // Make a search button in the Virtual KeyBoard
-        initView((EditText)root.findViewById(R.id.search_editor));
+        initView(root.findViewById(R.id.search_editor));
 
         return root;
     }
 
     private void initView(EditText editText){
-        editText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                    ((InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
-                            .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+        editText.setOnEditorActionListener((v, actionId, event) -> {
+            if(actionId == EditorInfo.IME_ACTION_SEARCH){
+                ((InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
+                        .hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    // go to search List
-                    Intent intent = new Intent(getContext(), SearchResult.class);
-                    intent.putExtra(BRID_INFO, editText.getText().toString());
-                    startActivity(intent);
+                // go to search List
+                Intent intent = new Intent(getContext(), SearchResult.class);
+                intent.putExtra("name", editText.getText().toString());
+                intent.putExtra("color", "Any");
+                intent.putExtra("size", 0);
+                startActivity(intent);
+                startActivity(intent);
 
-                    Log.d("mylog", "is ok ?");
-                    return true;
-                }
-                return false;
+                return true;
             }
+            return false;
         });
     }
 

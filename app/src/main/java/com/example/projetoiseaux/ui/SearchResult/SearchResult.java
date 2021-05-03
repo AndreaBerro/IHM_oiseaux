@@ -20,11 +20,12 @@ public class SearchResult extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        Intent intentReciver = getIntent();
-        String inputInfo = intentReciver.getStringExtra(BRID_INFO);
-        Log.d("mylog", inputInfo);
+        Intent intentReceiver = getIntent();
+        String name = intentReceiver.getStringExtra("name");
+        String color = intentReceiver.getStringExtra("color");
+        int size = intentReceiver.getIntExtra("size", 0);
 
-        ListBird birds = new ListBird();
+        ListBird birds = new ListBird(name, color, size);
 
         BridAdapter adapter = new BridAdapter(getApplicationContext(), birds);
         ListView listView = findViewById(R.id.listView);

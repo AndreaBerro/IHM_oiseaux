@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/actv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter a bird name"
+        android:completionHint="Enter a bird name"
+        android:completionThreshold="1"
+
+        android:inputType="text"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"/>
+
+    <TextView
+        android:id="@+id/color_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actv"
+        android:text="Couleur :"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:paddingTop="20dp"/>
+
+    <Spinner
+        android:id="@+id/spinner_color"
+        android:layout_width="match_parent"
+        android:layout_height="39dp"
+        android:layout_below="@id/color_text"
+        android:layout_gravity="center_horizontal"
+        android:dropDownAnchor="@id/spinner_color"/>
+
+    <TextView
+        android:id="@+id/size_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinner_color"
+        android:text="Taille :"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:paddingTop="20dp"/>
+
+    <NumberPicker
+        android:id="@+id/size_picker"
+        android:layout_width="172dp"
+        android:layout_height="136dp"
+        android:layout_below="@id/size_text"
+        android:paddingTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/birdPreview"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toEndOf="@id/size_picker"
+        android:layout_alignBottom="@id/size_picker"
+        app:srcCompat="@drawable/bird_icon" />
+
+    <ImageView
+        android:id="@+id/pigeonIcon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignEnd="@id/size_text"
+        android:layout_alignBottom="@id/size_picker"
+        app:srcCompat="@drawable/pigeon_icon" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/size_picker"
+        android:layout_marginStart="-37dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@id/size_picker"
+        android:text="Search" />
+
+
+</RelativeLayout>

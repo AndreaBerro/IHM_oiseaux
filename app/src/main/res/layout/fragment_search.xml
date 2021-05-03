@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.search.SearchFragment">
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/search_editor"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:hint="Please Enter The Birds Name"
+        android:completionHint="Enter a bird name"
+        android:dropDownAnchor="@id/search_editor"
         android:inputType="text"
         android:textSize="25dp"
         app:layout_constraintTop_toTopOf="parent"
@@ -33,4 +35,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/filter"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+        android:src="@drawable/ic_baseline_filter_alt_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="335dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:contentDescription="Search filter" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
