@@ -6,20 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/search_editor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Please Enter The Birds Name"
-        android:completionHint="Enter a bird name"
-        android:dropDownAnchor="@id/search_editor"
-        android:completionThreshold="1"
-        android:imeOptions="actionSearch"
-
-        android:singleLine="true"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="text"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        />
 
 
     <TextView
@@ -35,15 +32,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/filter"
-        android:layout_width="68dp"
-        android:layout_height="66dp"
-        android:src="@drawable/ic_baseline_filter_alt_24"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="335dp"
-        tools:layout_editor_absoluteY="0dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
