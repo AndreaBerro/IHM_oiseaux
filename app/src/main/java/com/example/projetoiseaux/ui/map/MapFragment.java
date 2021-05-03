@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.example.projetoiseaux.MainActivity;
+import com.example.projetoiseaux.PermissionState.StateUtils;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.IUploadActivity;
 import com.example.projetoiseaux.ui.UploadBird;
@@ -79,16 +81,25 @@ public class MapFragment extends Fragment {
 
         //todo : check the permission of GPS / the Etat of GPS
         // A class for a GPS Listener
-        Log.d("gps", "in MapFragment --> getActivity" + getActivity() +"\n Context--->" + getContext());
+
+        // check Internet State
+
+        if(!StateUtils.checkInternetState(getContext())){
+            Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_SHORT).show();
+        }
+
 
         if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_GPS);
         } else if (this.gps == null){
-            this.gps = new GPSUtils(getContext(), getActivity(), this);
+            if (!StateUtils.checkGpsState(getActivity())){
+                Toast.makeText(getContext(), "GPS IS OFF", Toast.LENGTH_SHORT).show();
+            } else {
+                this.gps = new GPSUtils(getContext(), getActivity(), this);
+            }
         }
 
         // this.gps = new GPS(root, getContext(), getActivity()); // not work if
-
         Configuration.getInstance().load(root.getContext(),
                 PreferenceManager.getDefaultSharedPreferences( root.getContext() ));
 
@@ -99,7 +110,7 @@ public class MapFragment extends Fragment {
         IMapController mapController = map.getController();
         mapController.setZoom( 14.0 );
 
-        if(gps != null) {
+        if(gps != null && gps.getCurrentPosition() != null) {
             mapController.setCenter(gps.getCurrentPosition()); // set center to currentLocation
         } else {
             mapController.setCenter(startPoint);

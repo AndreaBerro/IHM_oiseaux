@@ -143,12 +143,18 @@ public class ShareFragment extends Fragment {
 
     private void initBackButton(View rootView) {
         rootView.findViewById(R.id.share_return).setOnClickListener(click -> {
-            FragmentManager fragmentManager= getFragmentManager();
-            Fragment fragment=fragmentManager.findFragmentByTag("NewShare");
-            FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-            fragmentTransaction.remove(fragment);
-            fragmentTransaction.commit();
+            finishShare();
         });
+    }
+
+    private void finishShare() {
+
+        Log.d("mylog", "Will finish");
+        FragmentManager fragmentManager= getFragmentManager();
+        Fragment fragment=fragmentManager.findFragmentByTag("NewShare");
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.remove(fragment);
+        fragmentTransaction.commit();
     }
 
     // todo check non null
@@ -160,18 +166,15 @@ public class ShareFragment extends Fragment {
             c.startNetThread();
 
             if (notcompleted(desc)) return;
-            if (address != null) {
-                share = new Share("Ben", date, desc, address.getLatitude(), address.getLongitude(), gridViewAdapter.getListPictureName());
-                Client.uploadingCallRecords(share.getJsonObj());
+            share = new Share("Ben", date, desc, address.getLatitude(), address.getLongitude(), gridViewAdapter.getListPictureName());
+            Client.uploadingCallRecords(share.getJsonObj());
 
-                List<File> imageList = gridViewAdapter.getListPictureFile();
-                for (File image: imageList) {
-                    if (image.getPath().equals("Null")) break;
-                    Client.uploadImage("UserTestImg", image);
-                }
-            } else {
-
+            List<File> imageList = gridViewAdapter.getListPictureFile();
+            for (File image: imageList) {
+                if (image.getPath().equals("Null")) break;
+                Client.uploadImage("UserTestImg", image);
             }
+            finishShare();
         });
     }
 

@@ -105,6 +105,7 @@ public class GPSUtils {
     }
 
     GeoPoint getCurrentPosition(){
+        if(currentLocation == null) return null;
         return new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
     }
 
@@ -118,9 +119,6 @@ public class GPSUtils {
         //仅需要一个结果
         List<Address> addresses = geocoder.getFromLocation(currentLocation.getLatitude(), currentLocation.getLongitude(), 1);
         return addresses.get(0).getLocality();
-        /// TODO: 2021/4/21
-
-
     }
 
     Address getCityLocation(String cityName){
@@ -146,8 +144,4 @@ public class GPSUtils {
     }
 
 
-
-//    void setPlaceName(String placeName){
-//        placeNameTextView.setText(placeName);
-//    }
 }

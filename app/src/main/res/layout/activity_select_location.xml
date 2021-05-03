@@ -32,6 +32,7 @@
             android:text="@string/search" />
     </RelativeLayout>
 
+
     <ListView
 
         android:id="@+id/location_list"

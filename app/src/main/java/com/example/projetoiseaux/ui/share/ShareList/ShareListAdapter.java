@@ -92,7 +92,6 @@ public class ShareListAdapter extends BaseAdapter {
         } else {
             holder.imageView.setImageResource(R.drawable.ic_image_alt);
         }
-
         return convertView;
     }
 

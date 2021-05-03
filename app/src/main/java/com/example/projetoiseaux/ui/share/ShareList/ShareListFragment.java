@@ -13,8 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.projetoiseaux.MainActivity;
+import com.example.projetoiseaux.PermissionState.StateUtils;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.IUploadActivity;
 import com.example.projetoiseaux.ui.UploadBird;
@@ -52,6 +54,12 @@ public class ShareListFragment extends Fragment {
     public ShareListFragment() {}
 
     @Override
+    public void onStart() {
+        super.onStart();
+        flushData();
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -68,14 +76,20 @@ public class ShareListFragment extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_share_list, container, false);
 
+        if(!StateUtils.checkInternetState(getContext())){
+            Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
+        }
+
         shareData = new JSONArray();
         listShare = new ArrayList<Share>();
         shareListAdapter = new ShareListAdapter(getContext(), listShare);
         ListView listView = rootView.findViewById(R.id.shareList);
-        listView.setAdapter(shareListAdapter);
-        initFab(rootView);
         initFlush(rootView);
+        listView.setAdapter(shareListAdapter);
         flushData();
+
+        initFab(rootView);
+
 
         return rootView;
     }
@@ -106,6 +120,10 @@ public class ShareListFragment extends Fragment {
     }
 
     private void flushData(){
+        Log.d("mylog", "flush data");
+        if(!StateUtils.checkInternetState(getContext())){
+            Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_SHORT).show();
+        }
         Client.getShareInfo(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -140,7 +158,6 @@ public class ShareListFragment extends Fragment {
                         shareListAdapter.notifyDataSetChanged();
                         mainActivity.setUploadList(listUpload);
                         Log.d("mylog", "In shareList--->" + listUpload.get(0));
-                        // todo :  Add share point to A list UploadBird and give it to Main
                         //此时已在主线程中，可以更新UI了
                     }
                 });
