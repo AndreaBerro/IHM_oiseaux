@@ -1,7 +1,5 @@
-package com.example.projetoiseaux.ui.share.Camera;
+package com.example.projetoiseaux.ui.share.NewShare.Camera;
 
-import android.app.Activity;
-import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;

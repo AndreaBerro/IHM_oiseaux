@@ -1,8 +1,5 @@
-package com.example.projetoiseaux.ui.share;
+package com.example.projetoiseaux.ui.share.NewShare.GridPictures;
 
-
-import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.share.GridPictures.Picture;
 
 import java.util.ArrayList;
 

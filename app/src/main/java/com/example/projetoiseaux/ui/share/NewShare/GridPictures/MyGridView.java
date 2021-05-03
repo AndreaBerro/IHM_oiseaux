@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share.GridPictures;
+package com.example.projetoiseaux.ui.share.NewShare.GridPictures;
 
 import android.content.Context;
 import android.util.AttributeSet;

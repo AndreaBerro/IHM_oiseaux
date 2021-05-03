@@ -1,11 +1,9 @@
-package com.example.projetoiseaux.ui.share;
+package com.example.projetoiseaux.ui.share.NewShare.GridPictures;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,18 +12,14 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.share.GridPictures.Picture;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SplittableRandom;
 
-import static com.example.projetoiseaux.ui.share.Camera.PictureFileUtils.getPictureBitmap;
-import static com.example.projetoiseaux.ui.share.Camera.PictureFileUtils.getPictureFile;
-import static com.example.projetoiseaux.ui.share.ListSharePicture.BUTTON_ADD;
+import static com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils.getPictureBitmap;
+import static com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils.getPictureFile;
+import static com.example.projetoiseaux.ui.share.NewShare.GridPictures.ListSharePicture.BUTTON_ADD;
 
 
 //自定义的网格适配器
@@ -90,7 +84,7 @@ public class GridViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    void deletePicture(int position){
+    public void deletePicture(int position){
         if(position != getCount()-1) {
             AlertDialog.Builder  builder = new AlertDialog.Builder(mContext);
             AlertDialog alert = builder
@@ -117,12 +111,12 @@ public class GridViewAdapter extends BaseAdapter {
      * Add the picture path to the List of picture and refresh
      * @param absolutePath Picture Path in the mobile
      */
-    void addPicture(String absolutePath){
+    public void addPicture(String absolutePath){
         mData.add(new Picture(absolutePath));
         notifyDataSetChanged();
     }
 
-    void addListPicture(List<String> absolutePaths){
+    public void addListPicture(List<String> absolutePaths){
         for (String absolutePath : absolutePaths){
             addPicture(absolutePath);
         }
@@ -132,7 +126,7 @@ public class GridViewAdapter extends BaseAdapter {
         return mData.size() - 1;
     }
 
-    List<File> getListPictureFile(){
+    public List<File> getListPictureFile(){
         List<File> pictureList = new ArrayList<File>();
         for(Picture picture: mData){
             if(picture.getId() != BUTTON_ADD){
@@ -142,7 +136,7 @@ public class GridViewAdapter extends BaseAdapter {
         return pictureList;
     }
 
-    List<String> getListPictureName(){
+    public List<String> getListPictureName(){
         List<String> stringList = new ArrayList<String>();
         List<File> listPicture = getListPictureFile();
         for (File picture: listPicture){

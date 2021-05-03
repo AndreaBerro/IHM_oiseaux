@@ -63,4 +63,12 @@ public class Share {
     public List<String> getPictureName() {
         return pictureName;
     }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share;
+package com.example.projetoiseaux.ui.share.NewShare;
 
 import android.Manifest;
 import android.content.Intent;
@@ -29,16 +29,16 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projetoiseaux.BuildConfig;
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.share.Camera.PictureFileUtils;
-import com.example.projetoiseaux.ui.share.Camera.IPictureActivity;
+import com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils;
+import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
 import com.example.projetoiseaux.ui.share.Client.Client;
-import com.example.projetoiseaux.ui.share.Client.JsonUtil;
-import com.example.projetoiseaux.ui.share.GridPictures.MyGridView;
-import com.example.projetoiseaux.ui.share.location.SelectLocation;
-import com.example.projetoiseaux.ui.share.time.DatePickerFragment;
+import com.example.projetoiseaux.ui.share.NewShare.GridPictures.GridViewAdapter;
+import com.example.projetoiseaux.ui.share.NewShare.GridPictures.ListSharePicture;
+import com.example.projetoiseaux.ui.share.NewShare.GridPictures.MyGridView;
+import com.example.projetoiseaux.ui.share.Share;
+import com.example.projetoiseaux.ui.share.NewShare.location.SelectLocation;
+import com.example.projetoiseaux.ui.share.NewShare.time.DatePickerFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -47,8 +47,8 @@ import java.util.Locale;
 
 import me.nereo.multi_image_selector.MultiImageSelector;
 
-import static com.example.projetoiseaux.ui.share.Camera.IPictureActivity.REQUEST_IMAGE;
-import static com.example.projetoiseaux.ui.share.location.ILocation.SELECT_LOCATION;
+import static com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity.REQUEST_IMAGE;
+import static com.example.projetoiseaux.ui.share.NewShare.location.ILocation.SELECT_LOCATION;
 
 public class ShareFragment extends Fragment {
     private View rootView;
@@ -158,6 +158,8 @@ public class ShareFragment extends Fragment {
         rootView.findViewById(R.id.public_share).setOnClickListener(click -> {
             String desc = ((EditText)rootView.findViewById(R.id.share_desc)).getText().toString();
             c.startNetThread();
+
+            if (notcompleted(desc)) return;
             if (address != null) {
                 share = new Share("Ben", date, desc, address.getLatitude(), address.getLongitude(), gridViewAdapter.getListPictureName());
                 Client.uploadingCallRecords(share.getJsonObj());
@@ -167,8 +169,26 @@ public class ShareFragment extends Fragment {
                     if (image.getPath().equals("Null")) break;
                     Client.uploadImage("UserTestImg", image);
                 }
+            } else {
+
             }
         });
+    }
+
+    private boolean notcompleted(String desc) {
+        if (desc == null){
+            Toast.makeText(getContext(), "Please write some thing", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (address == null){
+            Toast.makeText(getContext(), "Please choose an address", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        if (date == null) {
+            Toast.makeText(getContext(), "Please choose a date", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return false;
     }
 
     private void addPicture() {

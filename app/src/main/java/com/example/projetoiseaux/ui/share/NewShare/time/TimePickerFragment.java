@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share.time;
+package com.example.projetoiseaux.ui.share.NewShare.time;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -11,7 +11,7 @@ import android.widget.TimePicker;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.share.Camera.IPictureActivity;
+import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
 
 import java.util.Calendar;
 

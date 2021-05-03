@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share.location;
+package com.example.projetoiseaux.ui.share.NewShare.location;
 
 public interface ILocation {
     public static final int SELECT_LOCATION = 66;

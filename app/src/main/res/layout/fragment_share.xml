@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.share.ShareFragment"
+    tools:context=".ui.share.NewShare.ShareFragment"
     android:orientation="vertical"
     android:gravity="start"
     android:background="#FFFFFF"
@@ -44,7 +44,7 @@
         android:lines="3"
         />
 
-    <com.example.projetoiseaux.ui.share.GridPictures.MyGridView
+    <com.example.projetoiseaux.ui.share.NewShare.GridPictures.MyGridView
         android:layout_weight="15"
         android:layout_marginBottom="5dp"
         android:id="@+id/gridView"
@@ -58,7 +58,7 @@
             verticalSpacing上下网格间距
             horizontalSpacing 水平间距
         -->
-    </com.example.projetoiseaux.ui.share.GridPictures.MyGridView>
+    </com.example.projetoiseaux.ui.share.NewShare.GridPictures.MyGridView>
 
     <RelativeLayout
         android:layout_weight="10"

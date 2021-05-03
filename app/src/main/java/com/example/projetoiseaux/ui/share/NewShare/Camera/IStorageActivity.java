@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share.Camera;
+package com.example.projetoiseaux.ui.share.NewShare.Camera;
 
 import android.graphics.Bitmap;
 
