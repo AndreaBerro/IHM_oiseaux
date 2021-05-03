@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.Bird;
-import com.example.projetoiseaux.ui.home.IBridInfo;
+import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
         implements IListener, IBridInfo {

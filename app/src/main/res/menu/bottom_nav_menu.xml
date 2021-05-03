@@ -2,31 +2,32 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
 
     <item
         android:id="@+id/navigation_map"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_geo_alt"
         android:title="@string/title_map" />
 
     <item
+        android:id="@+id/navigation_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/title_search" />
+
+    <item
         android:id="@+id/navigation_share"
-        android:icon="@drawable/plus"
+        android:icon="@drawable/ic_plus_circle"
         android:showAsAction="always"
         android:title="@string/title_Share"
         tools:ignore="AppCompatResource" />
 
     <item
-        android:id="@+id/navigation_favorite"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_favorite" />
+        android:id="@+id/navigation_discovery"
+        android:icon="@drawable/ic_globe"
+        android:title="@string/title_discovery" />
 
     <item
         android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_person"
         android:title="@string/title_Me" />
 
 

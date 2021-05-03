@@ -9,7 +9,6 @@ public class Bird {
         this.picture = picture;
     }
 
-
     public String getName() {
         return name;
     }

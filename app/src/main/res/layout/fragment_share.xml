@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.share.ShareFragment">
-
+    tools:context=".ui.share.ShareFragment"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFF2E2"
+    android:paddingBottom="?attr/actionBarSize">
+    <!--    android:background="#FFF2E2"-->
     <TextView
         android:id="@+id/text_share"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:textAlignment="center"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="#2196F3"
+        android:layout_weight="1"/>
+
+    <ImageView
+        android:id="@+id/birdPicture"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:src="@drawable/bird2"
+        />
+
+    <EditText
+        android:id="@+id/saySthText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="Say something"
+        />
 
     <Button
-        android:id="@+id/go_camera"
+        android:id="@+id/takePictureButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open Camera"
-        app:layout_constraintTop_toBottomOf="@id/text_share"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        android:text="Take a Picture"
+        android:layout_weight="1"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_marginTop="30dp"
         />
 
-        />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
