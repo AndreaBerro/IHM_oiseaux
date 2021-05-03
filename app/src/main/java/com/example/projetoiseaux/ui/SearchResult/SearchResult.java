@@ -12,6 +12,12 @@ import com.example.projetoiseaux.ui.Bird;
 import com.example.projetoiseaux.ui.BridAdapter;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static com.example.projetoiseaux.ui.Bird.sortedList;
+
 public class SearchResult extends AppCompatActivity
         implements IListener, IBridInfo {
 
@@ -20,11 +26,12 @@ public class SearchResult extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_result);
 
-        Intent intentReciver = getIntent();
-        String inputInfo = intentReciver.getStringExtra(BRID_INFO);
-        Log.d("mylog", inputInfo);
+        Intent intentReceiver = getIntent();
+        String name = intentReceiver.getStringExtra("name");
+        String color = intentReceiver.getStringExtra("color");
+        int size = intentReceiver.getIntExtra("size", 0);
 
-        ListBird birds = new ListBird();
+        ListBird birds = new ListBird(name, color, size);
 
         BridAdapter adapter = new BridAdapter(getApplicationContext(), birds);
         ListView listView = findViewById(R.id.listView);
