@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share.location;
+package com.example.projetoiseaux.ui.share.NewShare.location;
 
 import android.location.Address;
 import android.os.Parcel;

@@ -15,9 +15,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
+import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.IUploadActivity;
 import com.example.projetoiseaux.ui.UploadBird;
+import com.example.projetoiseaux.ui.share.Client.Client;
+import com.example.projetoiseaux.ui.share.Client.JsonUtil;
+import com.example.projetoiseaux.ui.share.Share;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -27,17 +34,25 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
+
 import static com.example.projetoiseaux.ui.map.IGPSActivity.REQUEST_PERMISSION_GPS;
+import static com.example.projetoiseaux.ui.share.ShareList.ShareListFragment.toDate;
 
 public class MapFragment extends Fragment {
     private IGPSActivity igpsActivity;
     private MapView map;
     private GPSUtils gps;
-    private ArrayList<UploadBird> listNearBird = new ArrayList<UploadBird>() {{add(new UploadBird("salut",new GeoPoint(43.615554,7.071800),new Date(), 1001010));}};
+    private List<UploadBird> listNearBird;
+
+    private IUploadActivity mainActivity;
 
 
     @Override
@@ -50,6 +65,8 @@ public class MapFragment extends Fragment {
         try {
             igpsActivity = (IGPSActivity) getActivity();
             igpsActivity.updateGps(this);
+            mainActivity = (IUploadActivity) getActivity();
+            Log.d("mytest", "point 2" + mainActivity);
         } catch (ClassCastException e) {
             throw new ClassCastException(e.toString()+ " must implement IGPSActivity");
         }
@@ -77,7 +94,7 @@ public class MapFragment extends Fragment {
 
         map = root.findViewById( R.id.map );
         map.setTileSource( TileSourceFactory.MAPNIK);
-        map.setBuiltInZoomControls( false );
+        map.setBuiltInZoomControls( true );
         GeoPoint startPoint = new GeoPoint(43.615544,7.071800);
         IMapController mapController = map.getController();
         mapController.setZoom( 14.0 );
@@ -86,6 +103,18 @@ public class MapFragment extends Fragment {
             mapController.setCenter(gps.getCurrentPosition()); // set center to currentLocation
         } else {
             mapController.setCenter(startPoint);
+        }
+
+
+        if ( mainActivity != null) {
+            listNearBird = mainActivity.getUploadList();
+        } else {
+            listNearBird = ((IUploadActivity)getActivity()).getUploadList();
+            Log.d("mylog", "point get IUPLOADACTIVITY " + listNearBird);
+        }
+        Log.d("mytest", "point 1" + listNearBird);
+        if(listNearBird == null){
+            listNearBird = new ArrayList<UploadBird>() {{add(new UploadBird("salut",new GeoPoint(43.615554,7.071800),new Date(), null));}};
         }
 
         ArrayList<OverlayItem> items = new ArrayList<>();
@@ -110,6 +139,7 @@ public class MapFragment extends Fragment {
 
         return root;
     }
+
 
     private List<OverlayItem> getBirdOverlayItem() {
         ArrayList<OverlayItem> result = new ArrayList<>();

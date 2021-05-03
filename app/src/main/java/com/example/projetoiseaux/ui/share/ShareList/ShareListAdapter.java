@@ -87,7 +87,11 @@ public class ShareListAdapter extends BaseAdapter {
         holder.imageView.setImageResource(R.drawable.ic_image_alt);
         holder.title.setText(mData.get(position).getUserName());
         holder.description.setText(mData.get(position).getDesc());
-        getOnlingBitMap(mData.get(position).getPictureName().get(0), holder.imageView);
+        if(mData.get(position).getPictureName().size() > 0) {
+            getOnlingBitMap(mData.get(position).getPictureName().get(0), holder.imageView);
+        } else {
+            holder.imageView.setImageResource(R.drawable.ic_image_alt);
+        }
 
         return convertView;
     }
@@ -122,30 +126,6 @@ public class ShareListAdapter extends BaseAdapter {
             }
         });
     }
-
-
-//    private Handler makeHandler(){
-//        Handler handler = new Handler(){
-//            @Override
-//            public void handleMessage(Message msg) {
-//                switch (msg.what){
-//                    //加载网络成功进行UI的更新,处理得到的图片资源
-//                    case Client.SUCCESS:
-//                        //通过message，拿到字节数组
-//                        byte[] Picture = (byte[]) msg.obj;
-//                        //使用BitmapFactory工厂，把字节数组转化为bitmap
-//                        Bitmap bitmap = BitmapFactory.decodeByteArray(Picture, 0, Picture.length);
-//                        //通过imageview，设置图片
-//                        imgShow.setImageBitmap(bitmap);
-//                        break;
-//                    //当加载网络失败执行的逻辑代码
-//                    default:
-//                        Toast.makeText(mContext, "Internet problem", Toast.LENGTH_SHORT).show();
-//                        break;
-//                }
-//            }
-//        };
-//    }
 
     public void refresh(List<Share> listShare){
         Log.d("mylog", "refresh");

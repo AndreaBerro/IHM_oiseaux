@@ -1,8 +1,6 @@
-package com.example.projetoiseaux.ui.share.Camera;
+package com.example.projetoiseaux.ui.share.NewShare.Camera;
 
-import android.widget.ImageView;
-
-import com.example.projetoiseaux.ui.share.ShareFragment;
+import com.example.projetoiseaux.ui.share.NewShare.ShareFragment;
 
 public interface IPictureActivity {
     public static final int REQUEST_CAMERA = 100;

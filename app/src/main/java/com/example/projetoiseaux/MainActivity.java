@@ -8,34 +8,35 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.projetoiseaux.ui.IUploadActivity;
+import com.example.projetoiseaux.ui.UploadBird;
 import com.example.projetoiseaux.ui.map.IGPSActivity;
 import com.example.projetoiseaux.ui.map.MapFragment;
-import com.example.projetoiseaux.ui.share.Camera.IPictureActivity;
-import com.example.projetoiseaux.ui.share.ShareFragment;
+import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
+import com.example.projetoiseaux.ui.share.NewShare.ShareFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
-import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
 
-import static com.example.projetoiseaux.ui.share.location.ILocation.LATITUDE;
-import static com.example.projetoiseaux.ui.share.location.ILocation.LONGITUDE;
-import static com.example.projetoiseaux.ui.share.location.ILocation.SELECT_LOCATION;
+import static com.example.projetoiseaux.ui.share.NewShare.location.ILocation.LATITUDE;
+import static com.example.projetoiseaux.ui.share.NewShare.location.ILocation.LONGITUDE;
+import static com.example.projetoiseaux.ui.share.NewShare.location.ILocation.SELECT_LOCATION;
 
-public class MainActivity extends AppCompatActivity implements IPictureActivity, IGPSActivity {
+public class MainActivity extends AppCompatActivity implements IPictureActivity, IGPSActivity, IUploadActivity {
     private Bitmap picture;
     private ShareFragment shareFragment;
     private MapFragment mapFragment;
     private ImageView imageView;
+    List<UploadBird> uploadList;
 
 
     @Override
@@ -159,6 +160,19 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
 
     public ShareFragment getShareFragment() {
         return shareFragment;
+    }
+
+    @Override
+    public void setUploadList(List<UploadBird> uploadList) {
+        Log.d("mylog", "in Main ___>" + uploadList.get(0).getGeoPoint());
+        this.uploadList = uploadList;
+        Log.d("mylog", "in Main ___ after>" + this.uploadList.get(0).getGeoPoint());
+    }
+
+    @Override
+    public List<UploadBird> getUploadList() {
+        Log.d("mylog", "in Main ___> getter" + uploadList);
+        return uploadList;
     }
 }
 

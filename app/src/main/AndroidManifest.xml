@@ -23,7 +23,7 @@
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
-        <activity android:name=".ui.share.location.SelectLocation" />
+        <activity android:name=".ui.share.NewShare.location.SelectLocation" />
         <activity android:name=".ui.SearchResult.SearchResult" />
         <activity android:name=".ui.searchTool.SearchActivity"/>
         <activity
