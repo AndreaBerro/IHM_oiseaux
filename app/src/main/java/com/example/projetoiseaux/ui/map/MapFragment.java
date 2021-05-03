@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.UploadBird;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -27,6 +28,8 @@ import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 import static com.example.projetoiseaux.ui.map.IGPSActivity.REQUEST_PERMISSION_GPS;
 
@@ -34,6 +37,7 @@ public class MapFragment extends Fragment {
     private IGPSActivity igpsActivity;
     private MapView map;
     private GPSUtils gps;
+    private ArrayList<UploadBird> listNearBird = new ArrayList<UploadBird>() {{add(new UploadBird("salut",new GeoPoint(43.615554,7.071800),new Date(), 1001010));}};
 
 
     @Override
@@ -60,7 +64,6 @@ public class MapFragment extends Fragment {
         // A class for a GPS Listener
         Log.d("gps", "in MapFragment --> getActivity" + getActivity() +"\n Context--->" + getContext());
 
-        //todo : 为什么不能在GPS类中请求权限？？？ 参数设置错误，同时 最开始没有权限时，也不会初始化currentLocation
         if(ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_GPS);
         } else if (this.gps == null){
@@ -86,6 +89,7 @@ public class MapFragment extends Fragment {
         }
 
         ArrayList<OverlayItem> items = new ArrayList<>();
+        items.addAll(getBirdOverlayItem());
         OverlayItem home = new OverlayItem("Polytech","QG",new GeoPoint(43.615544,7.071800));
         Drawable m = home.getMarker(0);
         items.add(home);
@@ -107,6 +111,15 @@ public class MapFragment extends Fragment {
         return root;
     }
 
+    private List<OverlayItem> getBirdOverlayItem() {
+        ArrayList<OverlayItem> result = new ArrayList<>();
+        for (UploadBird uploadBird : listNearBird) {
+            OverlayItem temp = new OverlayItem(uploadBird.getName(),uploadBird.getDate().toString(),uploadBird.getGeoPoint());
+            Drawable zorua = temp.getMarker(0);
+            result.add(temp);
+        }
+        return result;
+    }
 
     @Override
     public void onPause() {
