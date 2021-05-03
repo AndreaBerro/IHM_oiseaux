@@ -15,4 +15,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello TODO fragment</string>
+    <string name="say_some_thing">say some thing ......</string>
+    <string name="publicButton">public</string>
+    <string name="location">Location</string>
+    <string name="time">Time</string>
+    <string name="search">Search</string>
+    <string name="new_share">New Share</string>
 </resources>

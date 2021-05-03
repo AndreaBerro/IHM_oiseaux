@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/navigation_share"
-        android:name="com.example.projetoiseaux.ui.share.ShareFragment"
+        android:name="com.example.projetoiseaux.ui.share.ShareList.ShareListFragment"
         android:label="@string/title_Share"
-        tools:layout="@layout/fragment_share" />
+        tools:layout="@layout/fragment_share_list" />
 
     <fragment
         android:id="@+id/navigation_discovery"

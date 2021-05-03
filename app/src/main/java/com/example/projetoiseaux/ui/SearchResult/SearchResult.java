@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.ui.BridAdapter;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
@@ -25,7 +26,7 @@ public class SearchResult extends AppCompatActivity
 
         ListBird birds = new ListBird();
 
-        BirdsAdapter adapter = new BirdsAdapter(getApplicationContext(), birds);
+        BridAdapter adapter = new BridAdapter(getApplicationContext(), birds);
         ListView listView = findViewById(R.id.listView);
 
         listView.setAdapter(adapter);

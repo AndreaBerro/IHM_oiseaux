@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.SearchResult;
+package com.example.projetoiseaux.ui;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,15 +10,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.SearchResult.IListener;
+import com.example.projetoiseaux.ui.SearchResult.ListBird;
 
-public class BirdsAdapter extends BaseAdapter {
+public class BridAdapter extends BaseAdapter {
     private IListener listener;
     private ListBird birds;
     //Le contexte dans lequel est présent notre adapter
     private Context context;
     //Un mécanisme pour gérer l'affichage graphique depuis un layout XML
     private LayoutInflater mInflater;
-    public BirdsAdapter(Context context, ListBird birds) {
+    public BridAdapter(Context context, ListBird birds) {
         this.context = context;
         this.birds = birds;
         mInflater = LayoutInflater.from(this.context);

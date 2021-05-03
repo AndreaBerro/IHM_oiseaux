@@ -10,15 +10,26 @@ import android.widget.Toast;
 
 import com.example.projetoiseaux.ui.map.IGPSActivity;
 import com.example.projetoiseaux.ui.map.MapFragment;
-import com.example.projetoiseaux.ui.share.IPictureActivity;
+import com.example.projetoiseaux.ui.share.Camera.IPictureActivity;
 import com.example.projetoiseaux.ui.share.ShareFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.List;
+
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+
+import static com.example.projetoiseaux.ui.share.location.ILocation.LATITUDE;
+import static com.example.projetoiseaux.ui.share.location.ILocation.LONGITUDE;
+import static com.example.projetoiseaux.ui.share.location.ILocation.SELECT_LOCATION;
 
 public class MainActivity extends AppCompatActivity implements IPictureActivity, IGPSActivity {
     private Bitmap picture;
@@ -32,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        shareFragment = (ShareFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_share);
+        // Hide the ActionBar
+        getSupportActionBar().hide();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -43,7 +54,10 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
         NavigationUI.setupWithNavController(navView, navController);
+
+
     }
 
 
@@ -84,27 +98,53 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("mylog", "on picture result " + resultCode + "  " + requestCode);
         switch (requestCode) {
             case REQUEST_CAMERA:{
+                Log.d("mylog", "on picture result " + resultCode + "  " + requestCode);
                 if(resultCode == RESULT_OK) {
-                    Log.d("ihmdemo_MainActivity","onActivityResult()   ---> imageView="+imageView);
-                    picture = (Bitmap) data.getExtras().get("data");
-                    shareFragment.setImage(picture, imageView);
+                    Log.d("mylog", "on picture result ok " + data.getExtras());
+                    shareFragment.onTakePictureSuccess();
                 } else if (resultCode == RESULT_CANCELED) {
-                    Toast.makeText(getApplicationContext(), "Picture Cancel", Toast.LENGTH_LONG).show();
+                    Log.d("mylog", "on picture result cancle ");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Picture cancle", Toast.LENGTH_LONG);
+                    toast.show();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Picture Action failed", Toast.LENGTH_LONG).show();
+                    Log.d("mylog", "on picture result faille ");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Action faille", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             } break;
+            case SELECT_LOCATION:{
+                if(resultCode == RESULT_OK) {
+                    //Log.d("mylog", "get data: " + data.getDoubleExtra(LATITUDE, 0) +  data.getDoubleExtra(LONGITUDE, 0));
+                    shareFragment.setLocation( data.getDoubleExtra(LATITUDE, 0), data.getDoubleExtra(LONGITUDE, 0));
+                } else if (resultCode == RESULT_CANCELED) {
+                    Log.d("mylog", "on addr result cancle ");
+                    Toast toast = Toast.makeText(getApplicationContext(), "addr cancle", Toast.LENGTH_LONG);
+                    toast.show();
+                } else {
+                    Log.d("mylog", "on addr result faille ");
+                    Toast toast = Toast.makeText(getApplicationContext(), "Action faille", Toast.LENGTH_LONG);
+                    toast.show();
+                }
+            } break;
+            case REQUEST_IMAGE:{
+                if(resultCode == RESULT_OK){
+                    List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                    shareFragment.onTakeMultiPictureSuccess(path);
+                    Log.d("mylog", path.toString());
+                }
+            } break;
+
             default: break;
         }
     }
 
     @Override
-    public void update(ImageView imageView, ShareFragment shareFragment) {
+    public void update(ShareFragment shareFragment) {
         Log.d("ihmdemo_MainActivity","update()");
-        this.imageView = imageView;
-        this.shareFragment=shareFragment;
+        this.shareFragment = shareFragment;
     }
 
     @Override
@@ -115,6 +155,10 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
     @Override
     public void moveCamera() {
         //todo ... maybe useless...
+    }
+
+    public ShareFragment getShareFragment() {
+        return shareFragment;
     }
 }
 
