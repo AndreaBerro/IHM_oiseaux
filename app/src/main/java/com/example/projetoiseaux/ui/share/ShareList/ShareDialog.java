@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share;
+package com.example.projetoiseaux.ui.share.ShareList;
 
 import android.app.Activity;
 import android.app.Dialog;

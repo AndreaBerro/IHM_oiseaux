@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui;
+package com.example.projetoiseaux.Bird;
 
 import org.osmdroid.util.GeoPoint;
 
@@ -35,5 +35,8 @@ public class UploadBird {
 
     public GeoPoint getGeoPoint() {return geoPoint;}
 
-    public Date getDate() { return date; }
+    public Date getDate() {
+        if (date == null) date = new Date();
+        return date;
+    }
 }

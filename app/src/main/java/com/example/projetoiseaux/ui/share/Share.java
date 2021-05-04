@@ -1,7 +1,5 @@
 package com.example.projetoiseaux.ui.share;
 
-import android.util.Log;
-
 import com.example.projetoiseaux.ui.share.Client.JsonUtil;
 
 import org.json.JSONArray;
@@ -45,7 +43,7 @@ public class Share {
     }
 
     public JSONObject getJsonObj(){
-        return JsonUtil.toJsonObj(userName, date, desc, latitude, longitude, pictureName);
+        return JsonUtil.getShareJsonObj(userName, date, desc, latitude, longitude, pictureName);
     }
 
     public String getUserName() {

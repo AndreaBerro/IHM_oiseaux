@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui;
+package com.example.projetoiseaux.Bird;
 
 import com.example.projetoiseaux.R;
 

@@ -1,15 +1,13 @@
 package com.example.projetoiseaux.ui.SearchResult;
 
-import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import static com.example.projetoiseaux.ui.Bird.FULL_LIST;
-import static com.example.projetoiseaux.ui.Bird.sortedList;
+import static com.example.projetoiseaux.Bird.Bird.FULL_LIST;
+import static com.example.projetoiseaux.Bird.Bird.sortedList;
 
 public class ListBird extends ArrayList<Bird> {
 

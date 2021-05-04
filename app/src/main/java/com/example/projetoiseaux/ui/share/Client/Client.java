@@ -1,13 +1,13 @@
 package com.example.projetoiseaux.ui.share.Client;
 
-import android.accounts.NetworkErrorException;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
+
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,6 +41,15 @@ public class Client {
     };
 
     public Client(){}
+
+    public static void sendToken(Task<String> token) {
+        try {
+            URL url = new URL("http://192.168.56.1:9428/api/token");
+            uploadingCallRecords(JsonUtil.toJsonObject("Token", token.getResult()), url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void startNetThread() {
         new Thread() {

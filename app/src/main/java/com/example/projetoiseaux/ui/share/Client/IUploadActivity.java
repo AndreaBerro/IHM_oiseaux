@@ -1,4 +1,6 @@
-package com.example.projetoiseaux.ui;
+package com.example.projetoiseaux.ui.share.Client;
+
+import com.example.projetoiseaux.Bird.UploadBird;
 
 import java.util.List;
 

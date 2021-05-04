@@ -3,12 +3,10 @@ package com.example.projetoiseaux.ui.searchTool;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,14 +17,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
 import com.example.projetoiseaux.ui.SearchResult.ListBird;
 import com.example.projetoiseaux.ui.SearchResult.SearchResult;
 
 import java.util.List;
 
-import static com.example.projetoiseaux.ui.Bird.COLORS;
-import static com.example.projetoiseaux.ui.Bird.SIZES;
+import static com.example.projetoiseaux.Bird.Bird.COLORS;
+import static com.example.projetoiseaux.Bird.Bird.SIZES;
 
 public class SearchActivity extends AppCompatActivity {
 

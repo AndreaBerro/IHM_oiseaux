@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.share.NewShare.GridPictures.Picture;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -74,7 +75,6 @@ public class GridViewAdapter extends BaseAdapter {
             Bitmap bitmap = getPictureBitmap(mData.get(position).getPath());
             if(bitmap != null) {
                 holder.img_icon.setImageBitmap(bitmap);
-                holder.img_icon.setRotation(90);
             } else {
                 holder.img_icon.setImageResource(R.drawable.ic_image_alt);
             }

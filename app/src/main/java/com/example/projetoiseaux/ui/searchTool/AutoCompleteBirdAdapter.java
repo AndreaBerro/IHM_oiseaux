@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
 
 import java.util.ArrayList;
 import java.util.List;

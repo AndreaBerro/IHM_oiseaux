@@ -29,7 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projetoiseaux.BuildConfig;
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.UploadBird;
+import com.example.projetoiseaux.Bird.UploadBird;
 import com.example.projetoiseaux.ui.share.Client.UploadIntentService;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
@@ -44,6 +44,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 
@@ -175,10 +177,18 @@ public class ShareFragment extends Fragment {
             intent.putExtra("json", share.getJsonObj().toString());
             getContext().startService(intent);
 
-            List<File> imageList = gridViewAdapter.getListPictureFile();
-            for (File image: imageList) {
-                if (image.getPath().equals("Null")) break;
-                Client.uploadImage("UserTestImg", image);
+
+            share = new Share("Ben", date, desc, address.getLatitude(), address.getLongitude(), gridViewAdapter.getListPictureName());
+            try {
+                URL url = new URL("http://192.168.56.1:9428/api/share");
+                Client.uploadingCallRecords(share.getJsonObj(), url);
+                List<File> imageList = gridViewAdapter.getListPictureFile();
+                for (File image: imageList) {
+                    if (image.getPath().equals("Null")) break;
+                    Client.uploadImage("UserTestImg", image);
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
             }
             finishShare();
         });
@@ -247,8 +257,10 @@ public class ShareFragment extends Fragment {
                 // Create the File where the photo should go
                 photoFile = null;
                 try {
+                    // todo check permission stroage
                     photoFile = pictureFileUtils.createImageFile();
                 } catch (IOException ex) {
+
                     Log.e("mylog", "create file error");
                 }
                 // Continue only if the File was successfully created

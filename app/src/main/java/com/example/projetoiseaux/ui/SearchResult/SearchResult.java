@@ -9,7 +9,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
+import com.example.projetoiseaux.Bird.BridAdapter;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
