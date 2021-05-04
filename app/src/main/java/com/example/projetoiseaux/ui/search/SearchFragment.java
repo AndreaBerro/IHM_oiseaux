@@ -72,7 +72,6 @@ public class SearchFragment extends Fragment implements IBridInfo{
                 intent.putExtra("color", "Any");
                 intent.putExtra("size", 0);
                 startActivity(intent);
-                startActivity(intent);
 
                 return true;
             }
