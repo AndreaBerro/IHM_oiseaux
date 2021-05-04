@@ -5,15 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.share.ShareList.ShareListFragment"
-    android:paddingBottom="?attr/actionBarSize"
-    android:orientation="vertical">
+    android:paddingBottom="?attr/actionBarSize">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
         <ListView
-            android:layout_weight="100"
+            android:layout_weight="600"
             android:id="@+id/shareList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
