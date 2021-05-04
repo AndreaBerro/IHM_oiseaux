@@ -2,6 +2,7 @@ package com.example.projetoiseaux.ui.share.Client;
 
 import android.accounts.NetworkErrorException;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
@@ -129,50 +130,6 @@ public class Client {
                     e.printStackTrace();
                     Log.e("TAG Upload Failed：", "");
                 }
-            }
-        }.start();
-    }
-
-
-
-    public static void uploadingCallRecords(JSONObject js) {
-        new Thread() {
-            @Override
-            public void run() {
-                MediaType JSON = MediaType.parse("application/json;charset=utf-8");
-
-                //申明给服务端传递一个json串
-                //创建一个OkHttpClient对象
-                OkHttpClient okHttpClient = new OkHttpClient();
-                //创建一个RequestBody(参数1：数据类型 参数2传递的json串)
-                //json为String类型的json数据
-                String data = "";
-                try {
-                    data = js.getJSONArray("json").getString(0);
-                    Log.d("mylog", "data json " + data);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                RequestBody requestBody = RequestBody.create(JSON, data);
-                //创建一个请求对象
-                Request request = new Request.Builder()
-                        .addHeader("Authorization", "")//身份验证的Token
-                        .url("http://192.168.56.1:9428/api/share")//上传接口
-                        .post(requestBody)
-                        .build();
-
-                okHttpClient.newCall(request).enqueue(new Callback() {
-                    @Override
-                    public void onFailure(Call call, IOException e) {
-                        Log.e("TAG Upload Failed：", e.toString() + "");
-                    }
-
-                    @Override
-                    public void onResponse(Call call, Response response) throws IOException {
-                        String string = response.body().string();
-                        Log.i("TAG Upload Succeed：", string + "");
-                    }
-                });
             }
         }.start();
     }

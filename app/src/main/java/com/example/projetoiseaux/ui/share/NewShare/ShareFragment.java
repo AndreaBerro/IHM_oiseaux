@@ -29,6 +29,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projetoiseaux.BuildConfig;
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.UploadBird;
+import com.example.projetoiseaux.ui.share.Client.UploadIntentService;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
 import com.example.projetoiseaux.ui.share.Client.Client;
@@ -167,7 +169,11 @@ public class ShareFragment extends Fragment {
 
             if (notcompleted(desc)) return;
             share = new Share("Ben", date, desc, address.getLatitude(), address.getLongitude(), gridViewAdapter.getListPictureName());
-            Client.uploadingCallRecords(share.getJsonObj());
+
+            //tentative de intent service
+            Intent intent = new Intent(getContext(), UploadIntentService.class);
+            intent.putExtra("json", share.getJsonObj().toString());
+            getContext().startService(intent);
 
             List<File> imageList = gridViewAdapter.getListPictureFile();
             for (File image: imageList) {
