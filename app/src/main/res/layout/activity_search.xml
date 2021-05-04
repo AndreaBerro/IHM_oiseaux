@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/actv"
-        android:text="Couleur :"
+        android:text="Color :"
         android:gravity="center_horizontal"
         android:textSize="20sp"
         android:paddingTop="20dp"/>
@@ -45,7 +45,7 @@
         android:layout_marginTop="31dp"
         android:gravity="center_horizontal"
         android:paddingTop="20dp"
-        android:text="Taille :"
+        android:text="Size :"
         android:textSize="20sp" />
 
     <NumberPicker

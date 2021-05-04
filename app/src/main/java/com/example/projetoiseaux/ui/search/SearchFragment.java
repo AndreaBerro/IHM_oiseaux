@@ -42,13 +42,6 @@ public class SearchFragment extends Fragment implements IBridInfo{
             startActivity(filter);
         });
 
-        final TextView textView = root.findViewById(R.id.text_home);
-        searchViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
 
         AutoCompleteTextView editText = root.findViewById(R.id.search_editor);
         AutoCompleteBirdAdapter textAdapter = new AutoCompleteBirdAdapter(requireContext(), FULL_LIST);
