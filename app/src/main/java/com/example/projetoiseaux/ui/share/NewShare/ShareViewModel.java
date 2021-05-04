@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.share;
+package com.example.projetoiseaux.ui.share.NewShare;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

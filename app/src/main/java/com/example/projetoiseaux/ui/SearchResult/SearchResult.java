@@ -8,7 +8,8 @@ import android.util.Log;
 import android.widget.ListView;
 
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
+import com.example.projetoiseaux.Bird.BridAdapter;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
@@ -36,8 +37,5 @@ public class SearchResult extends AppCompatActivity
     @Override
     public void onClickBird(Bird item) {
         Log.d("mylog", item.getName());
-//        Intent intent = new Intent( getApplicationContext(), PizzaActivity.class);
-//        intent.putExtra(PIZZA, (Parcelable)item);
-//        startActivity(intent);
     }
 }

@@ -8,13 +8,16 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.projetoiseaux.ui.IUploadActivity;
-import com.example.projetoiseaux.ui.UploadBird;
+import com.example.projetoiseaux.ui.share.Client.IUploadActivity;
+import com.example.projetoiseaux.Bird.UploadBird;
 import com.example.projetoiseaux.ui.map.IGPSActivity;
 import com.example.projetoiseaux.ui.map.MapFragment;
+import com.example.projetoiseaux.ui.share.Client.Client;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
 import com.example.projetoiseaux.ui.share.NewShare.ShareFragment;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -22,7 +25,6 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
@@ -55,10 +57,17 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-
         NavigationUI.setupWithNavController(navView, navController);
 
+        // Send the registration token
+        sendTokenToServer();
 
+    }
+
+    private void sendTokenToServer() {
+        Task<String> token = FirebaseMessaging.getInstance().getToken();
+        Client.sendToken(token);
+        Log.d("mylog", "Get token ---> " + token.getResult());
     }
 
 

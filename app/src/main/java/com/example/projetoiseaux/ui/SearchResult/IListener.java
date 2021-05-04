@@ -1,6 +1,6 @@
 package com.example.projetoiseaux.ui.SearchResult;
 
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
 
 /**
  * Interface pour écouter les évènements sur le nom du diplome

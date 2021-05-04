@@ -1,5 +1,6 @@
 package com.example.projetoiseaux.ui.share.ShareList;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -18,8 +19,8 @@ import android.widget.Toast;
 import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.PermissionState.StateUtils;
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.IUploadActivity;
-import com.example.projetoiseaux.ui.UploadBird;
+import com.example.projetoiseaux.ui.share.Client.IUploadActivity;
+import com.example.projetoiseaux.Bird.UploadBird;
 import com.example.projetoiseaux.ui.share.Client.Client;
 import com.example.projetoiseaux.ui.share.Client.JsonUtil;
 import com.example.projetoiseaux.ui.share.Share;
@@ -34,6 +35,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -50,6 +52,8 @@ public class ShareListFragment extends Fragment {
     private List<UploadBird> listUpload;
 
     private IUploadActivity mainActivity;
+
+    private Context mContext;
 
     public ShareListFragment() {}
 
@@ -75,7 +79,7 @@ public class ShareListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_share_list, container, false);
-
+        mContext = getContext();
         if(!StateUtils.checkInternetState(getContext())){
             Toast.makeText(getContext(), "No internet connection", Toast.LENGTH_LONG).show();
         }
@@ -89,8 +93,6 @@ public class ShareListFragment extends Fragment {
         flushData();
 
         initFab(rootView);
-
-
         return rootView;
     }
 
@@ -135,35 +137,51 @@ public class ShareListFragment extends Fragment {
                 listShare = new ArrayList<Share>();
                 listUpload = new ArrayList<UploadBird>();
 
+                Log.d("mylog", "In ShareList server return------>shareData:" + shareData.length());
                 for(int i=0;i<shareData.length();i++){
                     try {
                         Share share = new Share(shareData.getJSONObject(i));
+
                         listShare.add(share);
                         listUpload.add(new UploadBird(share.getDesc(),
                                 share.getLatitude(),
                                 share.getLongitude(),
                                 toDate(share.getDate()),
                                 share.getPictureName()));
+//                        Log.d("mylog", "Share --- >" + share);
+//                        Log.d("mylog", "In ShareList server return------>shareData:" + shareData.getString(i));
+//                        Log.d("mylog", "In ShareList server return listShare------>" + i + " " + listShare.get(i).toString());
+//                        Log.d("mylog", "In ShareList server return listUpload------>" + i + " " + listUpload.get(i).toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
-                Log.d("mylog", " before refresh " + listUpload.get(0).getDate().toString());
+//                Log.d("mylog", " before refresh " + listUpload.get(0).getDate().toString());
 
-                // 应该换进主线程中， 否则会报错，也无法更改
-                ((MainActivity) getContext()).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        shareListAdapter.refresh(listShare);
-                        shareListAdapter.notifyDataSetChanged();
-                        mainActivity.setUploadList(listUpload);
-                        Log.d("mylog", "In shareList--->" + listUpload.get(0));
-                        //此时已在主线程中，可以更新UI了
-                    }
-                });
+                if(listUpload.size() > 0 && listShare.size() > 0) {
+                    // 应该换进主线程中， 否则会报错，也无法更改
+                    ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Collections.reverse(listShare);
+                            shareListAdapter.refresh(listShare);
+                            shareListAdapter.notifyDataSetChanged();
+                            mainActivity.setUploadList(listUpload);
+                            Log.d("mylog", "In shareList--->" + listUpload.get(0));
+                            //此时已在主线程中，可以更新UI了
+                        }
+                    });
+                } else {
+                    ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(mContext, "Server Error", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
 
 
-                Log.d("mylog", " after refresh " + shareData.toString());
+                // Log.d("mylog", " after refresh " + shareData.toString());
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.example.projetoiseaux.ui.SearchResult;
+package com.example.projetoiseaux.Bird;
 
 import android.content.Context;
 import android.view.LayoutInflater;

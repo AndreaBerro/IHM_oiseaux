@@ -3,8 +3,6 @@ package com.example.projetoiseaux.ui.search;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +23,7 @@ import com.example.projetoiseaux.ui.SearchResult.SearchResult;
 import com.example.projetoiseaux.ui.searchTool.AutoCompleteBirdAdapter;
 import com.example.projetoiseaux.ui.searchTool.SearchActivity;
 
-import static com.example.projetoiseaux.ui.Bird.FULL_LIST;
+import static com.example.projetoiseaux.Bird.Bird.FULL_LIST;
 
 public class SearchFragment extends Fragment implements IBridInfo{
 
