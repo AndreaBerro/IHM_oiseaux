@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "157954194656",
+    "project_id": "oiseaux-d2da4",
+    "storage_bucket": "oiseaux-d2da4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157954194656:android:2186ec9a1987bbca8c6485",
+        "android_client_info": {
+          "package_name": "com.example.projetoiseaux"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157954194656-tt9sjhbntue0i6mq342jc6psh1krppcm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.projetoiseaux",
+            "certificate_hash": "9ade6d99372de11e67a40ddfdb753aa1c862ba85"
+          }
+        },
+        {
+          "client_id": "157954194656-cvsto9umg5ib5k4rd05vmfanethbnldq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCj69YKcyVk-AfHd5U0ksUZ8HsGCBxD9D4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157954194656-cvsto9umg5ib5k4rd05vmfanethbnldq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
