@@ -3,11 +3,14 @@ package com.example.projetoiseaux.ui.SearchResult;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.Bird;
 import com.example.projetoiseaux.ui.search.IBridInfo;
@@ -45,7 +48,15 @@ public class SearchResult extends AppCompatActivity
         builder.setView(image);
         builder.setMessage(item.getDescription());
         builder.setNeutralButton("Back",null);
-        builder.setNegativeButton("View on map",null);
+        builder.setNegativeButton("View on map", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String name = item.getName();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
         builder.show();
     }
 }
