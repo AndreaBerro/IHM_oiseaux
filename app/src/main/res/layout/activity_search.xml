@@ -42,10 +42,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/spinner_color"
-        android:text="Taille :"
+        android:layout_marginTop="31dp"
         android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:paddingTop="20dp"/>
+        android:paddingTop="20dp"
+        android:text="Taille :"
+        android:textSize="20sp" />
 
     <NumberPicker
         android:id="@+id/size_picker"
@@ -58,8 +59,10 @@
         android:id="@+id/birdPreview"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_toEndOf="@id/size_picker"
         android:layout_alignBottom="@id/size_picker"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="-76dp"
+        android:layout_toEndOf="@id/size_picker"
         app:srcCompat="@drawable/bird_icon" />
 
     <ImageView
@@ -68,6 +71,8 @@
         android:layout_height="80dp"
         android:layout_alignEnd="@id/size_text"
         android:layout_alignBottom="@id/size_picker"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="-73dp"
         app:srcCompat="@drawable/pigeon_icon" />
 
     <Button
@@ -75,8 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/size_picker"
-        android:layout_marginStart="-37dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginStart="-29dp"
+        android:layout_marginTop="110dp"
         android:layout_toEndOf="@id/size_picker"
         android:text="Search" />
 
