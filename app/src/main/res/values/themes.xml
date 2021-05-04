@@ -23,4 +23,20 @@
     <style name="Theme.ProjetOiseaux.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.ProjetOiseaux.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFullscreen">true</item>
+        <!-- 有无边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">#222121</item>
+        <!-- 模糊 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!--无标题 -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>

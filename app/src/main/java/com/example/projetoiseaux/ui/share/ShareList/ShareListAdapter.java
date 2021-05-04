@@ -1,5 +1,6 @@
 package com.example.projetoiseaux.ui.share.ShareList;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +20,7 @@ import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.share.Client.Client;
 import com.example.projetoiseaux.ui.share.Client.JsonUtil;
 import com.example.projetoiseaux.ui.share.Share;
+import com.example.projetoiseaux.ui.share.ShareDialog;
 
 
 import org.json.JSONException;
@@ -74,7 +76,19 @@ public class ShareListAdapter extends BaseAdapter {
             holder.title = (TextView) convertView.findViewById(R.id.share_item_titre);
             holder.description = (TextView) convertView.findViewById(R.id.share_item_desc);
 
-
+            convertView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(mContext, "hiiiiii", Toast.LENGTH_SHORT).show();
+                    ShareDialog shareDialog = new ShareDialog(mContext);
+                    View dialogView = LayoutInflater.from(mContext).inflate(R.layout.coupons_dialog_layout
+                            , parent
+                            , false);
+                    getOnlingBitMap(mData.get(position).getPictureName().get(0), ((ImageView)dialogView.findViewById(R.id.dialogImage)));
+                    shareDialog.setContentView(dialogView);
+                    shareDialog.show();
+                }
+            });
 
             //将这一个网格的信息对象设置进去
             convertView.setTag(holder);
