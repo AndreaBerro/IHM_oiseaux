@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.projetoiseaux.AboutActivity;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.ui.SearchResult.SearchResult;
 import com.example.projetoiseaux.ui.searchTool.AutoCompleteBirdAdapter;
@@ -47,6 +49,15 @@ public class SearchFragment extends Fragment implements IBridInfo{
 
         // Make a search button in the Virtual KeyBoard
         initView(root.findViewById(R.id.search_editor));
+
+        Button aboutButton = (Button) root.findViewById(R.id.btnAbout);
+        aboutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), AboutActivity.class);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         return root;
     }
