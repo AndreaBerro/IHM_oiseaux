@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
         uploadList.add(new UploadBird("Eurasian blue tit",new GeoPoint(43.615554,7.071800),new Date(), null));
         uploadList.add(new UploadBird("Eurasian blue tit",new GeoPoint(43.619554,7.076800),new Date(), null));
         uploadList.add(new UploadBird("House sparrow",new GeoPoint(43.612554,7.079800),new Date(), null));
+        uploadList.add(new UploadBird("Common chaffinch",new GeoPoint(43.602554,7.081800),new Date(), null));
+        uploadList.add(new UploadBird("European robin",new GeoPoint(43.620554,7.070900),new Date(), null));
     }
 
     private void sendTokenToServer() {

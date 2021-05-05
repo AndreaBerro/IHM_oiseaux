@@ -45,6 +45,7 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".ui.share.Client.UploadIntentService"></service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
