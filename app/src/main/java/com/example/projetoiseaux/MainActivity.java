@@ -1,8 +1,11 @@
 package com.example.projetoiseaux;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -45,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
     List<UploadBird> uploadList;
     String filter = null;
 
+    public static String LOW_CHANNEL = "LOW";
+    public static String MEDIUM_CHANNEL = "MEDIUM";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,13 +59,14 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
 
         // Hide the ActionBar
         getSupportActionBar().hide();
+        createNotificationChannels();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_map, R.id.navigation_search, R.id.navigation_share , R.id.navigation_discovery, R.id.navigation_me)
+                R.id.navigation_map, R.id.navigation_search, R.id.navigation_share , R.id.navigation_discovery, R.id.navigation_notifications)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
@@ -160,6 +167,28 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
             } break;
 
             default: break;
+        }
+    }
+
+    private void createNotificationChannels(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel low = new NotificationChannel(
+                    LOW_CHANNEL,
+                    "Low",
+                    NotificationManager.IMPORTANCE_LOW
+            );
+            low.setDescription("Recommendations et minor information");
+
+            NotificationChannel medium = new NotificationChannel(
+                    MEDIUM_CHANNEL,
+                    "Medium",
+                    NotificationManager.IMPORTANCE_DEFAULT
+            );
+            medium.setDescription("Bird proximity information");
+
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(low);
+            manager.createNotificationChannel(medium);
         }
     }
 

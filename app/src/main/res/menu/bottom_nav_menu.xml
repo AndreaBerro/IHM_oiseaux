@@ -26,9 +26,9 @@
         android:title="@string/title_discovery" />
 
     <item
-        android:id="@+id/navigation_me"
-        android:icon="@drawable/ic_person"
-        android:title="@string/title_Me" />
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_notifications"
+        android:title="@string/title_notifications" />
 
 
 </menu>

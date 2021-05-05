@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoStart="true"
+        android:flipInterval="2500"
+        android:inAnimation="@android:anim/slide_in_left"
+        android:outAnimation="@android:anim/slide_out_right"/>
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/flipperNext"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignEnd="@id/viewFlipper"-->
+<!--        android:layout_alignTop="@id/viewFlipper"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:src="@drawable/ic_baseline_skip_next"-->
+<!--        />-->
+
+<!--    <ImageButton-->
+<!--        android:id="@+id/flipperPrevious"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignStart="@id/viewFlipper"-->
+<!--        android:layout_alignTop="@id/viewFlipper"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:src="@drawable/ic_baseline_skip_previous"-->
+<!--        />-->
+
+</RelativeLayout>
