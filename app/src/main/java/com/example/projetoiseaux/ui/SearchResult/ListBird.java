@@ -3,6 +3,8 @@ package com.example.projetoiseaux.ui.SearchResult;
 import com.example.projetoiseaux.Bird.Bird;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -29,12 +31,18 @@ public class ListBird extends ArrayList<Bird> {
     }
 
     private void filterName(ArrayList<Bird> total, ArrayList<Bird> list, String name){
+        List<Bird> birds;
         if (!name.equals("")){
-            total.addAll(list.stream()
+            birds = list.stream()
                     .filter(b -> b.getName().toLowerCase().contains(name.toLowerCase()))
-                    .collect(Collectors.toList()));
+                    .collect(Collectors.toList());
         } else {
-            total.addAll(list);
+            birds = list;
+        }
+        for(Bird bird : birds){
+            if(!total.contains(bird)){
+                total.add(bird);
+            }
         }
     }
 
@@ -47,6 +55,12 @@ public class ListBird extends ArrayList<Bird> {
                 ArrayList<Bird> sizeList = Objects.requireNonNull(list.get(i));
                 filterName(total, sizeList, name);
             }
+        }
+    }
+
+    public ListBird(ArrayList<String> birdNames){
+        for(String name : birdNames){
+            filterName(this, FULL_LIST, name);
         }
     }
 }

@@ -30,8 +30,8 @@
         tools:layout="@layout/fragment_discovery" />
 
     <fragment
-        android:id="@+id/navigation_me"
-        android:name="com.example.projetoiseaux.ui.profil.ProfilFragment"
-        android:label="@string/title_Me"
-        tools:layout="@layout/fragment_profil" />
+        android:id="@+id/navigation_notifications"
+        android:name="com.example.projetoiseaux.ui.notifications.NotificationFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_notification_list" />
 </navigation>

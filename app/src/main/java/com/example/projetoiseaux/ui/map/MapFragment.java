@@ -186,5 +186,7 @@ public class MapFragment extends Fragment {
         map.getController().setCenter(gps.getCurrentPosition());
     }
 
-
+    public List<UploadBird> getListNearBird() {
+        return listNearBird;
+    }
 }

@@ -76,6 +76,13 @@ public class Client {
         client.newCall(request).enqueue(callback);
     }
 
+    public static void getNotificationInfo(Callback callback)
+    {
+        OkHttpClient client = new OkHttpClient();
+        Request request  =new Request.Builder().url("http://192.168.56.1:9428/api/notifications").build();
+        client.newCall(request).enqueue(callback);
+    }
+
     public static void getImageRes(String imageName, Callback callback){
         //1.创建一个okhttpclient对象
         OkHttpClient okHttpClient = new OkHttpClient();

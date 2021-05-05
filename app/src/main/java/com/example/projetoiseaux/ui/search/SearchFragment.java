@@ -62,7 +62,7 @@ public class SearchFragment extends Fragment implements IBridInfo{
         return root;
     }
 
-    private void initView(EditText editText){
+    private void initView(AutoCompleteTextView editText){
         editText.setOnEditorActionListener((v, actionId, event) -> {
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
                 ((InputMethodManager) editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE))
