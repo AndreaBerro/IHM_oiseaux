@@ -29,6 +29,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.projetoiseaux.BuildConfig;
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.share.Client.UploadIntentService;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.PictureFileUtils;
 import com.example.projetoiseaux.ui.share.NewShare.Camera.IPictureActivity;
 import com.example.projetoiseaux.ui.share.Client.Client;
@@ -39,6 +40,8 @@ import com.example.projetoiseaux.ui.share.Share;
 import com.example.projetoiseaux.ui.share.NewShare.location.SelectLocation;
 import com.example.projetoiseaux.ui.share.NewShare.time.DatePickerFragment;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
@@ -268,6 +271,13 @@ public class ShareFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void uploadService(JSONObject json, URL url) {
+        Intent intent = new Intent(getContext(), UploadIntentService.class);
+        intent.putExtra("json",json.toString());
+        intent.putExtra("url", url);
+        getContext().startService(intent);
     }
 
     public void onTakePictureSuccess(){
