@@ -8,10 +8,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
@@ -72,6 +74,7 @@ public class MapFragment extends Fragment {
         } catch (ClassCastException e) {
             throw new ClassCastException(e.toString()+ " must implement IGPSActivity");
         }
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -124,15 +127,28 @@ public class MapFragment extends Fragment {
             Log.d("mylog", "point get IUPLOADACTIVITY " + listNearBird);
         }
         Log.d("mytest", "point 1" + listNearBird);
+
         if(listNearBird == null){
             listNearBird = new ArrayList<UploadBird>() {{add(new UploadBird("salut",new GeoPoint(43.615554,7.071800),new Date(), null));}};
         }
 
+        Button resetButton = (Button) root.findViewById(R.id.btnResetFilter);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.resetFilter();
+            }
+        });
+
+
+
         ArrayList<OverlayItem> items = new ArrayList<>();
         items.addAll(getBirdOverlayItem());
+        /*
         OverlayItem home = new OverlayItem("Polytech","QG",new GeoPoint(43.615544,7.071800));
         Drawable m = home.getMarker(0);
         items.add(home);
+        */
 
         ItemizedOverlayWithFocus<OverlayItem> mOververlay = new ItemizedOverlayWithFocus<OverlayItem>(root.getContext(), items, new ItemizedIconOverlay.OnItemGestureListener<OverlayItem>() {
             @Override

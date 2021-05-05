@@ -150,19 +150,17 @@ public class ShareListFragment extends Fragment {
                 }
                 Log.d("mylog", " before refresh " + listUpload.get(0).getDate().toString());
 
-                // 应该换进主线程中， 否则会报错，也无法更改
-                ((MainActivity) getContext()).runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        shareListAdapter.refresh(listShare);
-                        shareListAdapter.notifyDataSetChanged();
-                        mainActivity.setUploadList(listUpload);
-                        Log.d("mylog", "In shareList--->" + listUpload.get(0));
-                        //此时已在主线程中，可以更新UI了
-                    }
-                });
-
-
+                if(listUpload.size() > 0 && listShare.size() > 0) {
+                    ((MainActivity) getContext()).runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            shareListAdapter.refresh(listShare);
+                            shareListAdapter.notifyDataSetChanged();
+                            mainActivity.setUploadList(listUpload);
+                            Log.d("mylog", "In shareList--->" + listUpload.get(0));
+                        }
+                    });
+                }
                 Log.d("mylog", " after refresh " + shareData.toString());
             }
         });
