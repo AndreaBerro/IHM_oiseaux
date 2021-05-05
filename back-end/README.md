@@ -1,3 +1,8 @@
+# Attention: need a upload floder in .app/api/..../share
+# Attention: need a SDK-file for the google cloud messaging (firebase)
+#  $env:GOOGLE_APPLICATION_CREDENTIALS="D:\Courses\Semestre_6\IHM\backend\oiseaux-d2da4-firebase-adminsdk-x60hr-fcfbf5e58b.json"
+
+
 # NodeJS Back-End Starter
 
 ## Postman collection
