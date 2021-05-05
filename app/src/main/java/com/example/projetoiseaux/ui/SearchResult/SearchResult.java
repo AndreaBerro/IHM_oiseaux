@@ -6,13 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.Bird;
+import com.example.projetoiseaux.Bird.Bird;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
@@ -58,5 +58,6 @@ public class SearchResult extends AppCompatActivity
             }
         });
         builder.show();
+        Log.d("mylog", item.getName());
     }
 }

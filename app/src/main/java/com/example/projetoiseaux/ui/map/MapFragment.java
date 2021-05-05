@@ -18,17 +18,11 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
-import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.PermissionState.StateUtils;
 import com.example.projetoiseaux.R;
-import com.example.projetoiseaux.ui.IUploadActivity;
-import com.example.projetoiseaux.ui.UploadBird;
-import com.example.projetoiseaux.ui.share.Client.Client;
-import com.example.projetoiseaux.ui.share.Client.JsonUtil;
-import com.example.projetoiseaux.ui.share.Share;
+import com.example.projetoiseaux.ui.share.Client.IUploadActivity;
+import com.example.projetoiseaux.Bird.UploadBird;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
@@ -38,17 +32,11 @@ import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.ItemizedOverlayWithFocus;
 import org.osmdroid.views.overlay.OverlayItem;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
-
 import static com.example.projetoiseaux.ui.map.IGPSActivity.REQUEST_PERMISSION_GPS;
-import static com.example.projetoiseaux.ui.share.ShareList.ShareListFragment.toDate;
 
 public class MapFragment extends Fragment {
     private IGPSActivity igpsActivity;
@@ -171,6 +159,7 @@ public class MapFragment extends Fragment {
     private List<OverlayItem> getBirdOverlayItem() {
         ArrayList<OverlayItem> result = new ArrayList<>();
         for (UploadBird uploadBird : listNearBird) {
+            Log.d("mylog", "In MapFg ============>" + uploadBird.getGeoPoint().toDoubleString());
             OverlayItem temp = new OverlayItem(uploadBird.getName(),uploadBird.getDate().toString(),uploadBird.getGeoPoint());
             Drawable zorua = temp.getMarker(0);
             result.add(temp);

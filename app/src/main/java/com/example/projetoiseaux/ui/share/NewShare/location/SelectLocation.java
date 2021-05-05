@@ -73,10 +73,10 @@ public class SelectLocation extends AppCompatActivity {
 
         list_test.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0,View arg1,int arg2,long arg3){
-                Toast.makeText(getApplicationContext(), arg2 + " " + arg3, Toast.LENGTH_SHORT).show();
+                // Toast.makeText(getApplicationContext(), arg2 + " " + arg3, Toast.LENGTH_SHORT).show();
                 Intent data = new Intent();
 
-                if(arg2 == 0){
+                if(arg2 == 0 && addresses.size() == 0){
                     data.putExtra(ILocation.LATITUDE, currentLocation.getLatitude());
                     data.putExtra(ILocation.LONGITUDE, currentLocation.getLongitude());
                 } else {

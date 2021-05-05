@@ -1,12 +1,11 @@
 package com.example.projetoiseaux.ui.share.Client;
 
-import android.accounts.NetworkErrorException;
 import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
-import android.os.NetworkOnMainThreadException;
 import android.util.Log;
+
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,6 +39,15 @@ public class Client {
     };
 
     public Client(){}
+
+    public static void sendToken(Task<String> token) {
+        try {
+            URL url = new URL("http://192.168.56.1:9428/api/token");
+            uploadingCallRecords(JsonUtil.toJsonObject("Token", token.getResult()), url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void startNetThread() {
         new Thread() {
@@ -135,7 +143,7 @@ public class Client {
 
 
 
-    public static void uploadingCallRecords(JSONObject js) {
+    public static void uploadingCallRecords(JSONObject js, URL url) {
         new Thread() {
             @Override
             public void run() {
@@ -148,8 +156,10 @@ public class Client {
                 //json为String类型的json数据
                 String data = "";
                 try {
-                    data = js.getJSONArray("json").getString(0);
-                    Log.d("mylog", "data json " + data);
+                    if(js != null) {
+                        data = js.getJSONArray("json").getString(0);
+                        Log.d("mylog", "data json " + data);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -157,7 +167,8 @@ public class Client {
                 //创建一个请求对象
                 Request request = new Request.Builder()
                         .addHeader("Authorization", "")//身份验证的Token
-                        .url("http://192.168.56.1:9428/api/share")//上传接口
+                        .url(url)
+                        // url("http://192.168.56.1:9428/api/share")//上传接口
                         .post(requestBody)
                         .build();
 

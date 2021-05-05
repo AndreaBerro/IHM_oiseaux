@@ -14,18 +14,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logoapp"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logoapp"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetOiseaux">
+        <service
+            android:name=".FirebaseCloudMsg.FireMsgService"
+            android:enabled="true"
+            android:exported="true"></service>
         <!-- MultiImageSelector -->
         <activity
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name=".ui.share.NewShare.location.SelectLocation" />
         <activity android:name=".ui.SearchResult.SearchResult" />
-        <activity android:name=".ui.searchTool.SearchActivity"/>
+        <activity android:name=".ui.searchTool.SearchActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -34,7 +38,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- service gmc -->
+        <service android:name=".FirebaseCloudMsg.FireIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
