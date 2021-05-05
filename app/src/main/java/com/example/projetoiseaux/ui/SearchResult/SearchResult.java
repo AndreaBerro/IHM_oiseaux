@@ -1,19 +1,23 @@
 package com.example.projetoiseaux.ui.SearchResult;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.R;
 import com.example.projetoiseaux.Bird.Bird;
 import com.example.projetoiseaux.Bird.BridAdapter;
 import com.example.projetoiseaux.ui.search.IBridInfo;
 
 public class SearchResult extends AppCompatActivity
-        implements IListener, IBridInfo {
+        implements IBirdListener, IBridInfo {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +31,7 @@ public class SearchResult extends AppCompatActivity
 
         ListBird birds = new ListBird(name, color, size);
 
-        BridAdapter adapter = new BridAdapter(getApplicationContext(), birds);
+        BirdAdapter adapter = new BirdAdapter(getApplicationContext(), birds);
         ListView listView = findViewById(R.id.listView);
 
         listView.setAdapter(adapter);
@@ -36,6 +40,25 @@ public class SearchResult extends AppCompatActivity
 
     @Override
     public void onClickBird(Bird item) {
+        ImageView image = new ImageView(this);
+        image.setImageResource(item.getPicture());
+        image.setAdjustViewBounds(true);
+        image.setMaxWidth(100);
+        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+        builder.setTitle(item.getName());
+        builder.setView(image);
+        builder.setMessage(item.getDescription());
+        builder.setNeutralButton("Back",null);
+        builder.setNegativeButton("View on map", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String name = item.getName();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
+        builder.show();
         Log.d("mylog", item.getName());
     }
 }

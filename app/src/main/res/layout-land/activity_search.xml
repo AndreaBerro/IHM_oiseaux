@@ -9,7 +9,7 @@
 
     <EditText
         android:id="@+id/actv"
-        android:layout_width="246dp"
+        android:layout_width="323dp"
         android:layout_height="wrap_content"
         android:completionHint="Enter a bird name"
         android:completionThreshold="1"
@@ -21,7 +21,7 @@
 
     <TextView
         android:id="@+id/color_text"
-        android:layout_width="246dp"
+        android:layout_width="323dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/actv"
         android:layout_marginTop="2dp"
@@ -32,11 +32,11 @@
 
     <Spinner
         android:id="@+id/spinner_color"
-        android:layout_width="246dp"
+        android:layout_width="323dp"
         android:layout_height="39dp"
         android:layout_below="@id/color_text"
         android:layout_gravity="center_horizontal"
-        android:dropDownAnchor="@id/spinner_color"/>
+        android:dropDownAnchor="@id/spinner_color" />
 
     <TextView
         android:id="@+id/size_text"

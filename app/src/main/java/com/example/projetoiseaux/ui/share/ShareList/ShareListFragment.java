@@ -137,7 +137,7 @@ public class ShareListFragment extends Fragment {
                 listShare = new ArrayList<Share>();
                 listUpload = new ArrayList<UploadBird>();
 
-                Log.d("mylog", "In ShareList server return------>shareData:" + shareData.length());
+                // Log.d("mylog", "In ShareList server return------>shareData:" + shareData.length());
                 for(int i=0;i<shareData.length();i++){
                     try {
                         Share share = new Share(shareData.getJSONObject(i));

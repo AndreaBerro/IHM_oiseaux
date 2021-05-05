@@ -25,6 +25,10 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import org.osmdroid.util.GeoPoint;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
     private MapFragment mapFragment;
     private ImageView imageView;
     List<UploadBird> uploadList;
+    String filter = null;
 
 
     @Override
@@ -50,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
         getSupportActionBar().hide();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
@@ -61,7 +67,13 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
 
         // Send the registration token
         sendTokenToServer();
+        Intent intentReceiver = getIntent();
+        filter = intentReceiver.getStringExtra("name");
 
+        uploadList = new ArrayList<UploadBird>();
+        uploadList.add(new UploadBird("Eurasian blue tit",new GeoPoint(43.615554,7.071800),new Date(), null));
+        uploadList.add(new UploadBird("Eurasian blue tit",new GeoPoint(43.619554,7.076800),new Date(), null));
+        uploadList.add(new UploadBird("House sparrow",new GeoPoint(43.612554,7.079800),new Date(), null));
     }
 
     private void sendTokenToServer() {
@@ -179,9 +191,30 @@ public class MainActivity extends AppCompatActivity implements IPictureActivity,
     }
 
     @Override
+    public void resetFilter() {
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public String getFilter() {
+        return filter;
+    }
+
+    @Override
     public List<UploadBird> getUploadList() {
-        Log.d("mylog", "in Main ___> getter" + uploadList);
-        return uploadList;
+        if(filter != null && filter != "") {
+            List<UploadBird> filteredList = new ArrayList<>();
+            for(UploadBird bird : uploadList) {
+                if(bird.getName().equals(filter)) {
+                    filteredList.add(bird);
+                }
+            }
+            return filteredList;
+        } else {
+            return uploadList;
+        }
+
     }
 }
 
