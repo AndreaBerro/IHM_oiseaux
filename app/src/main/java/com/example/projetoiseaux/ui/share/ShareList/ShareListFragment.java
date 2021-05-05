@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.projetoiseaux.MainActivity;
 import com.example.projetoiseaux.PermissionState.StateUtils;
 import com.example.projetoiseaux.R;
+import com.example.projetoiseaux.ui.Factory.AdapterFactory;
 import com.example.projetoiseaux.ui.share.Client.IUploadActivity;
 import com.example.projetoiseaux.Bird.UploadBird;
 import com.example.projetoiseaux.ui.share.Client.Client;
@@ -86,7 +87,13 @@ public class ShareListFragment extends Fragment {
 
         shareData = new JSONArray();
         listShare = new ArrayList<Share>();
-        shareListAdapter = new ShareListAdapter(getContext(), listShare);
+        AdapterFactory adapterFactory = new AdapterFactory();
+        try {
+            shareListAdapter = (ShareListAdapter) adapterFactory.createAdapter(AdapterFactory.LIST_ADAPTER, getContext(), listShare);
+        } catch (Throwable throwable) {
+            throwable.printStackTrace();
+        }
+        //shareListAdapter = new ShareListAdapter(getContext(), listShare);
         ListView listView = rootView.findViewById(R.id.shareList);
         initFlush(rootView);
         listView.setAdapter(shareListAdapter);
